@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>     -->
+    <meta name="viewport" content="initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="col-xs-12 col-lg-12">
+    <div class="page-header media-heading col-xs-12 col-lg-12">
+        <!-- only show this element when the user isnt on mobile -->
+        <h1 class="d-none d-md-block col-lg-12">Expense Tracker
+            <small class="col-lg-offset-6">Total Due: <span class="total-expense">0</span></small>
+        </h1>
+        <!-- only show this element when the user gets to a mobile version -->
+        <h3 class="d-non d-sm-block d-md-none">Expense Tracker
+            <small class="col-xs-offset-9">Total Due: <span class="total-expense"> 0</span></small>
+        </h3>
+    </div>
+    <div class="student-add-form col-xs-12 col-lg-3 float-right">
+        <h4>Add Bill</h4>
+
+        <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-file-invoice"></i></span>
+            </div>
+            <input type="text" name="vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="far fa-sticky-note"></i></span>
+            </div>
+            <input type="text" name="description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+            </div>
+            <input type="text" name="amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3 ">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
+            </div>
+            <input type="text" name="due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1">
+        </div>
+        <div class="mb-3">
+            <button type="button" class="add btn btn-success" id="addButton">Add</button>
+            <button type="button" class="cancel btn btn-danger" id="cancelButton">Cancel</button>
+        </div>
+        
+        <!-- <button type="button" class="get-server-data btn btn-default" id="getServerData">Get Server Data</button> -->
+    </div>
+    <div class="student-list-container page-header media-heading col-xs-12 col-md-12 col-lg-9">
+        <table class="student-list col-lg-12  table-hover">
+            <thead>
+            <tr>
+                <th class="col-xs-2">Vendor</th>
+                <th class="col-xs-2">Description</th>
+                <th class="col-xs-2">Amount</th>
+                <th class="col-xs-2">Due Date</th>
+                <th class="col-xs-2">Edit</th>
+            </tr>
+            </thead>
+            <tbody id="displayArea">
+                <tr>
+                    <td>AT&T</td>
+                    <td>Phone bill</td>
+                    <td>$60.00</td>
+                    <td>05/31/2019</td>
+                    <td><button>Paid</button><br>
+                        <button>Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Spectrum</td>
+                    <td>Cable and Internet bill</td>
+                    <td>$60.00</td>
+                    <td>05/31/2019</td>
+                    <td><button>Paid</button><br>
+                        <button>Edit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SoCal Edison</td>
+                    <td>Electricity bill</td>
+                    <td>$60.00</td>
+                    <td>05/31/2019</td>
+                    <td><button>Paid</button><br>
+                        <button>Edit</button>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+
