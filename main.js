@@ -7,7 +7,8 @@ function startApp(){
         vendorInput: document.getElementById('vendor'),
         descriptionInput: document.getElementById('description'),
         amountInput: document.getElementById('amount'),
-        dueDateInput: document.getElementById('due-date')
+        dueDateInput: document.getElementById('due-date'),
+        billDisplayArea: document.getElementById('display-area')
     });
 
    expenseTracker.addClickHandlers();

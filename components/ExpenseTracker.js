@@ -7,7 +7,8 @@ class ExpenseTracker{
             vendorInput: elementConfig.vendorInput,
             descriptionInput: elementConfig.descriptionInput,
             amountInput: elementConfig.amountInput,
-            dueDateInput: elementConfig.dueDateInput
+            dueDateInput: elementConfig.dueDateInput,
+            billDisplayArea: elementConfig.billDisplayArea
         };
 
         this.data = {};
@@ -23,10 +24,15 @@ class ExpenseTracker{
     }
 
     addBill(){
-        let vendorName = this.elementConfig.vendorInput.value;
-        let descriptionInput = this.elementConfig.descriptionInput.value;
-        let amountInput = this.elementConfig.amountInput.value;
-        let dueDateInput = this.elementConfig.dueDateInput.value;
+        const billRequirements = {
+            vendorName: this.elementConfig.vendorInput.value,
+            descriptionInput: this.elementConfig.descriptionInput.value,
+            amountInput: this.elementConfig.amountInput.value,
+            dueDateInput: this.elementConfig.dueDateInput.value,
+            billDisplayArea: this.elementConfig.billDisplayArea
+        };
+        
+        const newBill = new Bill(billRequirements);
         this.clearInputs();
     }
 
