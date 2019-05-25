@@ -33,6 +33,7 @@ class ExpenseTracker{
         };
         
         const newBill = new Bill(billRequirements);
+        newBill.renderBill();
         this.clearInputs();
     }
 
