@@ -2,10 +2,11 @@
 
 class Bill{
     constructor(billRequirements){
-        this.vendor = billRequirements.vendorName;
-        this.description = billRequirements.descriptionInput;
-        this.amount = billRequirements.amountInput;
-        this.dueDate = billRequirements.dueDateInput;
+        this.id = billRequirements.id;
+        this.vendor = billRequirements.vendor;
+        this.description = billRequirements.description;
+        this.amount = billRequirements.amount;
+        this.dueDate = billRequirements.dueDate;
         this.billDisplayArea = billRequirements.billDisplayArea;
 
         this.renderBill = this.renderBill.bind(this);

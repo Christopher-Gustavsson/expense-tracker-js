@@ -12,5 +12,6 @@ function startApp(){
     });
 
    expenseTracker.addClickHandlers();
+   expenseTracker.getBills();
 }
 
