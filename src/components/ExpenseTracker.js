@@ -24,18 +24,11 @@ class ExpenseTracker{
     }
 
     getBills(){
-        console.log("getBills:");
         fetch("/public/api/data/get-bills.json").then(resp => resp.json())
         .then(data => {
-            //use data here
             const billsArray = data.bills;
 
             billsArray.forEach( bill => {
-                console.log("id:", bill.id);
-                console.log("vendor:", bill.vendor);
-                console.log("description", bill.description);
-                console.log("amount", bill.amount);
-                console.log("dueDate", bill.dueDate);
                 const billRequirements = {
                     id: bill.id,
                     vendor: bill.vendor,
@@ -45,25 +38,14 @@ class ExpenseTracker{
                     billDisplayArea: this.elementConfig.billDisplayArea
                 };
 
-                //create bill
                 const newBill = new Bill(billRequirements);
-                //render bill
                 newBill.renderBill();
             });
-            // for(let bill = 0; bill < billsArray.length; bill++){
-            //     // console.log(billsArray[bill]);
-            //     console.log("bill number: ", bill);
-            //     for(let billValue in billsArray[bill]){
-                    
-            //         console.log(billsArray[bill][billValue]);
-            //     }
-            // }
-
         });
     }
 
     addBill(){
-        //TODO: need to include bill ID.
+        //TODO: need to account for bill ID.
         const billRequirements = {
             vendor: this.elementConfig.vendorInput.value,
             description: this.elementConfig.descriptionInput.value,

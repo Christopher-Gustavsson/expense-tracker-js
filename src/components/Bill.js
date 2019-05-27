@@ -41,6 +41,9 @@ class Bill{
                 tableData.appendChild(paidButton);
                 tableData.appendChild(editButton);
             }
+            else if(value === 'amount'){
+                tableData.innerHTML = `$${billValues[value].toFixed(2)}`;
+            }
             else{
                 tableData.innerHTML = billValues[value];
             }

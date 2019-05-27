@@ -4,8 +4,15 @@
 
 tr{
     border-bottom: 1px solid #dbdbdb;
+    
 }
 
 td{
+    padding: 1rem 0;
     border-bottom: 1px solid #dbdbdb;
+}
+
+th{
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
 }
