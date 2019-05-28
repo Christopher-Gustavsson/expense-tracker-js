@@ -27,8 +27,8 @@ class ExpenseTracker{
         fetch('api/bills')
         .then(resp => resp.json())
         .then(data => {
-            if(data.success){
-                const billsArray = data.bills;
+            if(data){
+                const billsArray = data;
 
                 billsArray.forEach( bill => {
                     const billRequirements = {
