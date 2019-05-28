@@ -24,23 +24,29 @@ class ExpenseTracker{
     }
 
     getBills(){
-        fetch("/public/api/data/get-bills.json").then(resp => resp.json())
+        fetch("/public/api/data/get-bills.json")
+        .then(resp => resp.json())
         .then(data => {
-            const billsArray = data.bills;
+            if(data.success){
+                const billsArray = data.bills;
 
-            billsArray.forEach( bill => {
-                const billRequirements = {
-                    id: bill.id,
-                    vendor: bill.vendor,
-                    description: bill.description,
-                    amount: bill.amount,
-                    dueDate: bill.dueDate,
-                    billDisplayArea: this.elementConfig.billDisplayArea
-                };
-
-                const newBill = new Bill(billRequirements);
-                newBill.renderBill();
-            });
+                billsArray.forEach( bill => {
+                    const billRequirements = {
+                        id: bill.id,
+                        vendor: bill.vendor,
+                        description: bill.description,
+                        amount: bill.amount,
+                        dueDate: bill.dueDate,
+                        billDisplayArea: this.elementConfig.billDisplayArea
+                    };
+    
+                    const newBill = new Bill(billRequirements);
+                    newBill.renderBill();
+                });
+            }
+        })
+        .catch(err => {
+            console.log("Get server data error:", err);
         });
     }
 
