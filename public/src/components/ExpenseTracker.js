@@ -23,8 +23,8 @@ class ExpenseTracker{
 
     }
 
-    getBills(){
-        fetch("/public/api/data/get-bills.json")
+    getBills(){ 
+        fetch('api/bills')
         .then(resp => resp.json())
         .then(data => {
             if(data.success){
