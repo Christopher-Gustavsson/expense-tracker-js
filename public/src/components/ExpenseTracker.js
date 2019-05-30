@@ -47,8 +47,6 @@ class ExpenseTracker{
         .catch(err => {
             console.log("Get server data error:", err);
         });
-
-        
     }
 
     addBill(){
@@ -81,30 +79,6 @@ class ExpenseTracker{
         this.clearInputs();
     }
 
-    // sendDataToServer()
-	// {
-	// 	console.log("sendDataToServer called");
-	// 	$.ajax({
-	// 		url: "api/grades",
-	// 		method: "POST",
-	// 		data: {
-	// 			api_key: "AlK0e9FN3A",
-	// 			name: $("#studentName").val(),
-	// 			course: $("#studentCourse").val(),
-	// 			grade: $("#studentGrade").val().toString()
-	// 		},
-	// 		dataType: "json",
-	// 		succes: (response) => {
-	// 			console.log(`sendDataToServer: ${response}`);
-	// 		},
-	// 		error: (e) =>{
-	// 			console.log(`sendDataToServer Error: ${e}`);
-	// 		}
-	// 	});
-
-	// 	this.getServerData();
-	// }
-
     cancelBill(){
         this.clearInputs();
     }
@@ -117,7 +91,6 @@ class ExpenseTracker{
     }
 
     removeAllBillElements(){
-        console.log("hi");
         let table = document.getElementById('student-list');
         for (let i = table.rows.length - 1; i > 0; i--){
             table.deleteRow(i);
