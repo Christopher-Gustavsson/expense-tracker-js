@@ -9,6 +9,7 @@ class Bill{
         this.dueDate = billRequirements.dueDate;
         this.deleteBill = billRequirements.deleteBill;
         this.billDisplayArea = billRequirements.billDisplayArea;
+        this.domElement = null;
 
         this.renderBill = this.renderBill.bind(this);
         this.updateBill = this.updateBill.bind(this);
@@ -39,7 +40,7 @@ class Bill{
                 const editButton = document.createElement("BUTTON");
                 editButton.innerHTML = 'Edit';
                 editButton.setAttribute('id', 'edit-button');
-                editButton.addEventListener('click', this.handleDelete)
+                editButton.addEventListener('click', this.handleDelete);
 
                 tableData.appendChild(paidButton);
                 tableData.appendChild(editButton);
@@ -52,6 +53,7 @@ class Bill{
             }
 
             billTableRow.appendChild(tableData);
+            this.domElement = billTableRow;
         }
 
         this.billDisplayArea.appendChild(billTableRow);
@@ -63,6 +65,11 @@ class Bill{
 
     handleDelete(){
         this.deleteBill(this.id);
-        console.log("handleDelete Called"); 
+        this.deleteRow(this.domElement);
+    }
+
+    deleteRow(row){
+        let index = row.parentNode.parentNode.rowIndex;
+        this.billDisplayArea.deleteRow(index);
     }
 }
