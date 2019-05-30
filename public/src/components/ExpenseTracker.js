@@ -82,12 +82,7 @@ class ExpenseTracker{
     }
 
     deleteBill(bill_id){
-        fetch('api/bills?bill_id=' + bill_id, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+        fetch('api/bills/' + bill_id, {method: 'DELETE'})
         .then(resp => resp.json())
         .then(data => {
             if(data.success){

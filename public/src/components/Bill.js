@@ -12,7 +12,7 @@ class Bill{
 
         this.renderBill = this.renderBill.bind(this);
         this.updateBill = this.updateBill.bind(this);
-        this.deleteBill = this.deleteBill.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     renderBill(){
@@ -39,6 +39,7 @@ class Bill{
                 const editButton = document.createElement("BUTTON");
                 editButton.innerHTML = 'Edit';
                 editButton.setAttribute('id', 'edit-button');
+                editButton.addEventListener('click', this.handleDelete)
 
                 tableData.appendChild(paidButton);
                 tableData.appendChild(editButton);
@@ -60,7 +61,8 @@ class Bill{
 
     }
 
-    deleteBill(){
-
+    handleDelete(){
+        this.deleteBill(this.id);
+        console.log("handleDelete Called"); 
     }
 }
