@@ -5,9 +5,12 @@ const mysqlCredentials = require('./mysql-creds.js');
 const cors = require("cors");
 const db = mysql.createConnection(mysqlCredentials);
 const server = express();
+server.use(express.json());
 server.use(cors());
 server.use(express.static(__dirname + '/public'));
 server.use(express.urlencoded({extended: false}));
+
+
 
 server.get('/api/bills', (req, resp) => {
     db.connect(() => {
@@ -32,6 +35,7 @@ server.post('/api/bills', (req, resp) => {
             success: false,
             error: 'Invalid vendor, description, amount, or due date'
         });
+        return;
     }
 
     db.connect(() => {

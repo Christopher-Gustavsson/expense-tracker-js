@@ -15,6 +15,7 @@ class ExpenseTracker{
 
         this.addBill = this.addBill.bind(this);
         this.cancelBill = this.cancelBill.bind(this);
+        this.getBills = this.getBills.bind(this);
     }
 
     addClickHandlers(){
@@ -24,6 +25,7 @@ class ExpenseTracker{
     }
 
     getBills(){ 
+        this.removeAllBillElements();
         fetch('api/bills')
         .then(resp => resp.json())
         .then(data => {
@@ -48,22 +50,63 @@ class ExpenseTracker{
         .catch(err => {
             console.log("Get server data error:", err);
         });
+
+        
     }
 
     addBill(){
-        //TODO: need to account for bill ID.
-        const billRequirements = {
+        const queryParams = {
             vendor: this.elementConfig.vendorInput.value,
             description: this.elementConfig.descriptionInput.value,
-            amount: this.elementConfig.amountInput.value,
+            amount: parseFloat(this.elementConfig.amountInput.value),
             dueDate: this.elementConfig.dueDateInput.value,
-            billDisplayArea: this.elementConfig.billDisplayArea
         };
-        
-        const newBill = new Bill(billRequirements);
-        newBill.renderBill();
+
+        fetch('api/bills', {
+            method: 'POST',
+            body: JSON.stringify(queryParams),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log('addBill data:', data);
+            if(data.success){
+                console.log('Added bill to db');
+            }
+            else{
+                console.log('Error could not add to db....', data.error);
+            }
+        });
+
+        this.getBills();
         this.clearInputs();
     }
+
+    // sendDataToServer()
+	// {
+	// 	console.log("sendDataToServer called");
+	// 	$.ajax({
+	// 		url: "api/grades",
+	// 		method: "POST",
+	// 		data: {
+	// 			api_key: "AlK0e9FN3A",
+	// 			name: $("#studentName").val(),
+	// 			course: $("#studentCourse").val(),
+	// 			grade: $("#studentGrade").val().toString()
+	// 		},
+	// 		dataType: "json",
+	// 		succes: (response) => {
+	// 			console.log(`sendDataToServer: ${response}`);
+	// 		},
+	// 		error: (e) =>{
+	// 			console.log(`sendDataToServer Error: ${e}`);
+	// 		}
+	// 	});
+
+	// 	this.getServerData();
+	// }
 
     cancelBill(){
         this.clearInputs();
@@ -74,6 +117,14 @@ class ExpenseTracker{
         this.elementConfig.descriptionInput.value = '';
         this.elementConfig.amountInput.value= '';
         this.elementConfig.dueDateInput.value = '';
+    }
+
+    removeAllBillElements(){
+        console.log("hi");
+        let table = document.getElementById('student-list');
+        for (let i = table.rows.length - 1; i > 0; i--){
+            table.deleteRow(i);
+        }
     }
 }
 
