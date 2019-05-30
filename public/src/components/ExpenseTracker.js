@@ -11,8 +11,6 @@ class ExpenseTracker{
             billDisplayArea: elementConfig.billDisplayArea
         };
 
-        this.data = {};
-
         this.addBill = this.addBill.bind(this);
         this.cancelBill = this.cancelBill.bind(this);
         this.getBills = this.getBills.bind(this);
@@ -21,7 +19,6 @@ class ExpenseTracker{
     addClickHandlers(){
         this.elementConfig.addButton.addEventListener('click', this.addBill);
         this.elementConfig.cancelButton.addEventListener('click', this.cancelBill);
-
     }
 
     getBills(){ 
