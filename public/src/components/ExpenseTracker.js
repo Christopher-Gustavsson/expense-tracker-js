@@ -14,6 +14,7 @@ class ExpenseTracker{
         this.addBill = this.addBill.bind(this);
         this.cancelBill = this.cancelBill.bind(this);
         this.getBills = this.getBills.bind(this);
+        this.deleteBill = this.deleteBill.bind(this);
     }
 
     addClickHandlers(){
@@ -36,6 +37,7 @@ class ExpenseTracker{
                         description: bill.description,
                         amount: bill.amount,
                         dueDate: bill.dueDate,
+                        deleteBill: this.deleteBill,
                         billDisplayArea: this.elementConfig.billDisplayArea
                     };
     
@@ -77,6 +79,24 @@ class ExpenseTracker{
 
         this.getBills();
         this.clearInputs();
+    }
+
+    deleteBill(bill_id){
+        fetch('api/bills?bill_id=' + bill_id, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.success){
+                console.log('Bill deleted...');
+            }
+            else{
+                console.log('Bill not deleted...')
+            }
+        });
     }
 
     cancelBill(){

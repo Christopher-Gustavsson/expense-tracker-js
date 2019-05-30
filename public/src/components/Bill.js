@@ -7,6 +7,7 @@ class Bill{
         this.description = billRequirements.description;
         this.amount = billRequirements.amount;
         this.dueDate = billRequirements.dueDate;
+        this.deleteBill = billRequirements.deleteBill;
         this.billDisplayArea = billRequirements.billDisplayArea;
 
         this.renderBill = this.renderBill.bind(this);
@@ -30,6 +31,7 @@ class Bill{
             const tableData = document.createElement("TD");
             
             if(value === 'buttons'){
+                tableData.setAttribute('id', 'buttons-container');
                 const paidButton = document.createElement("BUTTON");
                 paidButton.innerHTML = 'Paid';
                 paidButton.setAttribute('id', 'paid-button')
