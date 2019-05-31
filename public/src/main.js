@@ -8,7 +8,11 @@ function startApp(){
         descriptionInput: document.getElementById('description'),
         amountInput: document.getElementById('amount'),
         dueDateInput: document.getElementById('due-date'),
-        billDisplayArea: document.getElementById('display-area')
+        billDisplayArea: document.getElementById('display-area'),
+        modal: document.getElementById('simple-modal'),
+        closeModalButton: document.getElementsByClassName('close-button')[0],
+        updateButton: document.getElementById('update-button'),
+        modalCancelButton: document.getElementById('modal-cancel-button')
     });
 
    expenseTracker.addClickHandlers();

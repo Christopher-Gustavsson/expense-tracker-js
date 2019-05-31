@@ -31,7 +31,7 @@
   }
   
   .close-button{
-    float: right;
+    /* float: right; */
     color: #ccc;
     font-size: 1.5rem;
   }

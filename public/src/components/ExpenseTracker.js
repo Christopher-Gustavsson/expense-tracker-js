@@ -8,18 +8,28 @@ class ExpenseTracker{
             descriptionInput: elementConfig.descriptionInput,
             amountInput: elementConfig.amountInput,
             dueDateInput: elementConfig.dueDateInput,
-            billDisplayArea: elementConfig.billDisplayArea
+            billDisplayArea: elementConfig.billDisplayArea,
+            modal: elementConfig.modal,
+            closeModalButton: elementConfig.closeModalButton,
+            updateButton: elementConfig.updateButton,
+            modalCancelButton: elementConfig.modalCancelButton
         };
+
 
         this.addBill = this.addBill.bind(this);
         this.cancelBill = this.cancelBill.bind(this);
         this.getBills = this.getBills.bind(this);
         this.deleteBill = this.deleteBill.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        this.outsideModalClick = this.outsideModalClick.bind(this);
     }
 
     addClickHandlers(){
         this.elementConfig.addButton.addEventListener('click', this.addBill);
         this.elementConfig.cancelButton.addEventListener('click', this.cancelBill);
+
+        this.elementConfig.closeModalButton.addEventListener('click', this.closeModal);
+        window.addEventListener('click', this.outsideModalClick);
     }
 
     getBills(){ 
@@ -38,6 +48,8 @@ class ExpenseTracker{
                         amount: bill.amount,
                         dueDate: bill.dueDate,
                         deleteBill: this.deleteBill,
+                        modal: this.elementConfig.modal,
+                        openModal: this.openModal,
                         billDisplayArea: this.elementConfig.billDisplayArea
                     };
     
@@ -112,6 +124,20 @@ class ExpenseTracker{
         let table = document.getElementById('student-list');
         for (let i = table.rows.length - 1; i > 0; i--){
             table.deleteRow(i);
+        }
+    }
+
+    openModal(){
+        this.modal.style.display = 'block';
+    }
+
+    closeModal(){
+        this.elementConfig.modal.style.display = 'none';
+    }
+
+    outsideModalClick(e){
+        if(e.target == this.elementConfig.modal){
+            this.elementConfig.modal.style.display = 'none';
         }
     }
 }

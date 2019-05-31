@@ -8,12 +8,15 @@ class Bill{
         this.amount = billRequirements.amount;
         this.dueDate = billRequirements.dueDate;
         this.deleteBill = billRequirements.deleteBill;
+        this.modal = billRequirements.modal;
+        this.openModal = billRequirements.openModal;
         this.billDisplayArea = billRequirements.billDisplayArea;
         this.domElement = null;
 
         this.renderBill = this.renderBill.bind(this);
         this.updateBill = this.updateBill.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
     }
 
     renderBill(){
@@ -40,7 +43,7 @@ class Bill{
                 const editButton = document.createElement("BUTTON");
                 editButton.innerHTML = 'Edit';
                 editButton.setAttribute('id', 'edit-button');
-                editButton.addEventListener('click', this.handleDelete);
+                editButton.addEventListener('click', this.handleOpenModal);
 
                 tableData.appendChild(paidButton);
                 tableData.appendChild(editButton);
@@ -63,13 +66,16 @@ class Bill{
 
     }
 
+    handleOpenModal(){
+        this.openModal();
+    }
+
     handleDelete(){
         this.deleteBill(this.id);
         this.deleteRow(this.domElement);
     }
 
     deleteRow(row){
-        debugger;
         let index = row.sectionRowIndex;
         this.billDisplayArea.deleteRow(index);
     }
