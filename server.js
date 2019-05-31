@@ -11,6 +11,38 @@ server.use(express.static(__dirname + '/public'));
 server.use(express.urlencoded({extended: true}));
 
 
+//Create bill in db
+server.post('/api/bills', (req, resp) => {
+    const {vendor, description, amount, dueDate} = req.body;
+    if(vendor === undefined || description === undefined || amount === undefined || dueDate === undefined){
+        resp.send({
+            success: false,
+            error: 'Invalid vendor, description, amount, or due date'
+        });
+        return;
+    }
+
+    db.connect(() => {
+        const query = 'INSERT INTO `bills` SET `vendor`= ?, `description`= ?, `amount`= ?, `dueDate`= ?';
+        
+        db.query(query, [vendor, description, amount, dueDate], (error, data) => {
+            if(!error){
+                resp.send({
+                    success: true,
+                    new_id: data.insertId
+                });
+            }
+            else{
+                resp.send({
+                    success: false,
+                });
+            }
+        });
+    
+    });
+
+});
+
 //Read all bills from db
 server.get('/api/bills', (req, resp) => {
     db.connect(() => {
@@ -29,9 +61,11 @@ server.get('/api/bills', (req, resp) => {
     });
 });
 
-//Create bill in db
-server.post('/api/bills', (req, resp) => {
-    if(req.body.vendor === undefined || req.body.description === undefined || req.body.amount === undefined || req.body.dueDate === undefined){
+//Update bill in db
+server.post('/api/bills/update', (req, resp) => {
+    const {id, vendor, description, amount, dueDate} = req.body;
+
+    if(id === undefined || vendor === undefined || description === undefined || amount === undefined || dueDate === undefined){
         resp.send({
             success: false,
             error: 'Invalid vendor, description, amount, or due date'
@@ -40,24 +74,22 @@ server.post('/api/bills', (req, resp) => {
     }
 
     db.connect(() => {
-        const query = 'INSERT INTO `bills` SET `vendor`="' + req.body.vendor + '", `description`="' + req.body.description + '", `amount`=' + req.body.amount + ', `dueDate`="' + req.body.dueDate + '"';
-        
-        db.query(query, (error, data) => {
+        const query = 'UPDATE `bills` SET `vendor`= ?, `description`= ?, `amount`= ?, `dueDate`= ? WHERE `id` = ?';
+
+        db.query(query, [vendor, description, parseFloat(amount), dueDate, id], (error) => {
             if(!error){
                 resp.send({
-                    success: true,
-                    new_id: data.insertId
+                    success: true
                 });
             }
             else{
                 resp.send({
                     success: false,
+                    error: error
                 });
             }
         });
-    
     });
-
 });
 
 //Delete bill in db

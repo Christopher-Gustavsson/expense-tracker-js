@@ -81,6 +81,9 @@ class ExpenseTracker{
         this.clearInputs();
     }
 
+    updateBill(updateRequirements){
+    }
+
     deleteBill(bill_id){
         fetch('api/bills/' + bill_id, {method: 'DELETE'})
         .then(resp => resp.json())
