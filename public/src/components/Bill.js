@@ -69,7 +69,8 @@ class Bill{
     }
 
     deleteRow(row){
-        let index = row.parentNode.parentNode.rowIndex;
+        debugger;
+        let index = row.sectionRowIndex;
         this.billDisplayArea.deleteRow(index);
     }
 }   

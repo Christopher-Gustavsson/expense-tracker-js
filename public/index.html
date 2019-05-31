@@ -6,12 +6,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>     -->
     <meta name="viewport" content="initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/modal.css">
     <script src="./src/components/Bill.js"></script>
     <script src="./src/components/ExpenseTracker.js"></script>
+    <script src="./src/components/modal.js"></script>
     <script src="./src/main.js"></script>
 </head>
 <body>
@@ -83,6 +85,41 @@
 </div>
 
 
+<!-- MODAL -->
+
+<button id="modal-button" class="button">Click me</button>
+<div id="simple-modal" class="modal">
+	<div class="modal-content">
+        <span class="close-button">&times;</span>
+        
+        <div class="view-project">
+            <div class="project-media" style="background-image:url(./port6.jpg)"></div>
+            <div class="view-project-content pt-10">
+                <div class="modal-title">
+                    <h2>Creative Photography</h2>
+
+                </div>
+                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                    born and I will give you a complete account of the system, and expound the actual teachings of
+                    the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes,
+                    or avoids pleasure itself, because it is pleasure.</p>
+                <ul class="project-info-list">
+                    <li class="text-uppercase">
+                        <span>Client</span>Jon Morikas</li>
+                    <li class="text-uppercase">
+                        <span>Industry</span>Adventure / Travel</li>
+                    <li class="text-uppercase">
+                        <span>Services</span>Design, Art Direction, Website</li>
+                    <li class="text-uppercase">
+                        <span>Website</span>
+                        <a href="#">www.project.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+	</div>
+</div>
 
 </body>
 </html>
