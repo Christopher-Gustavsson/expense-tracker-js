@@ -12,23 +12,29 @@ class ExpenseTracker{
             modal: elementConfig.modal,
             closeModalButton: elementConfig.closeModalButton,
             updateButton: elementConfig.updateButton,
-            modalCancelButton: elementConfig.modalCancelButton
+            cancelModalButton: elementConfig.cancelModalButton
         };
 
+        this.updateId = null;
+        this.allBills = [];
 
         this.addBill = this.addBill.bind(this);
-        this.cancelBill = this.cancelBill.bind(this);
         this.getBills = this.getBills.bind(this);
+        this.updateBill = this.updateBill.bind(this);
         this.deleteBill = this.deleteBill.bind(this);
+        this.cancelBill = this.cancelBill.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.openModal = this.openModal.bind(this);
         this.outsideModalClick = this.outsideModalClick.bind(this);
     }
 
     addClickHandlers(){
         this.elementConfig.addButton.addEventListener('click', this.addBill);
         this.elementConfig.cancelButton.addEventListener('click', this.cancelBill);
+        this.elementConfig.updateButton.addEventListener('click', this.updateBill);
 
         this.elementConfig.closeModalButton.addEventListener('click', this.closeModal);
+        this.elementConfig.cancelModalButton.addEventListener('click', this.closeModal);
         window.addEventListener('click', this.outsideModalClick);
     }
 
@@ -48,12 +54,14 @@ class ExpenseTracker{
                         amount: bill.amount,
                         dueDate: bill.dueDate,
                         deleteBill: this.deleteBill,
+                        updateBill: this.updateBill,
                         modal: this.elementConfig.modal,
                         openModal: this.openModal,
                         billDisplayArea: this.elementConfig.billDisplayArea
                     };
     
                     const newBill = new Bill(billRequirements);
+                    this.allBills.push(newBill);
                     newBill.renderBill();
                 });
             }
@@ -80,7 +88,6 @@ class ExpenseTracker{
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log('addBill data:', data);
             if(data.success){
                 console.log('Added bill to db');
             }
@@ -93,9 +100,33 @@ class ExpenseTracker{
         this.clearInputs();
     }
 
-    updateBill(updateRequirements){
-        
+    updateBill(){
+        console.log('do we have id? pt3', this.updateId);
+        const updateRequirements = {
+            id: this.updateId,
+            vendor: document.getElementById('modal-vendor').value,
+            description: document.getElementById('modal-description').value,
+            amount: document.getElementById('modal-amount').value,
+            dueDate: document.getElementById('modal-due-date').value
+        };
 
+        console.log('do we have id? pt4', updateRequirements.id);
+        fetch('api/bills/update', {
+            method: 'POST',
+            body: JSON.stringify(updateRequirements),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.success){
+                console.log('Updated bill in db');
+            }
+            else{
+                console.log('Error coud not update bill in db...', data.error);
+            }
+        });
 
     }
 
@@ -130,12 +161,25 @@ class ExpenseTracker{
         }
     }
 
-    openModal(){
-        this.modal.style.display = 'block';
-        document.getElementById('modal-vendor').value = this.vendor;
-        document.getElementById('modal-description').value = this.description;
-        document.getElementById('modal-amount').value = this.amount;
-        document.getElementById('modal-due-date').value = this.dueDate;
+    getCurrentBill(){
+        return {
+            id: this.id,
+            vendor: this.vendor,
+            description: this.description,
+            amount: this.amount,
+            dueDate: this.dueDate
+        };
+    }
+    openModal(modalInfo){
+        modalInfo.modal.style.display = 'block';
+        document.getElementById('modal-vendor').value = modalInfo.vendor;
+        document.getElementById('modal-description').value = modalInfo.description;
+        document.getElementById('modal-amount').value = modalInfo.amount;
+        document.getElementById('modal-due-date').value = modalInfo.dueDate;
+       
+        this.updateId = modalInfo.id;
+
+        console.log('do we have id? pt1', this.updateId);
     }
 
     closeModal(){
@@ -146,6 +190,7 @@ class ExpenseTracker{
         if(e.target === this.elementConfig.modal){
             this.elementConfig.modal.style.display = 'none';
         }
+        console.log('do we have id? outsideModalClick', this.updateId);
     }
 }
 

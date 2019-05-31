@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", startApp);
 
+let expenseTracker;
 function startApp(){
-    const expenseTracker = new ExpenseTracker({
+     expenseTracker = new ExpenseTracker({
         addButton: document.getElementById('add-button'),
         cancelButton: document.getElementById('cancel-button'),
         vendorInput: document.getElementById('vendor'),
@@ -12,7 +13,7 @@ function startApp(){
         modal: document.getElementById('simple-modal'),
         closeModalButton: document.getElementsByClassName('close-button')[0],
         updateButton: document.getElementById('update-button'),
-        modalCancelButton: document.getElementById('modal-cancel-button')
+        cancelModalButton: document.getElementById('modal-cancel-button')
     });
 
    expenseTracker.addClickHandlers();

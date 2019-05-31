@@ -7,14 +7,17 @@ class Bill{
         this.description = billRequirements.description;
         this.amount = billRequirements.amount;
         this.dueDate = billRequirements.dueDate;
+
         this.deleteBill = billRequirements.deleteBill;
+        this.updateBill = billRequirements.updateBill;
+
         this.modal = billRequirements.modal;
         this.openModal = billRequirements.openModal;
         this.billDisplayArea = billRequirements.billDisplayArea;
+
         this.domElement = null;
 
         this.renderBill = this.renderBill.bind(this);
-        this.handleUpdateBill = this.handleUpdateBill.bind(this);
         this.handleDeleteBill = this.handleDeleteBill.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
     }
@@ -69,25 +72,26 @@ class Bill{
         this.billDisplayArea.appendChild(billTableRow);
     }
 
-    handleUpdateBill(){
-        const updateRequirements = {
-            modalVendor: document.getElementById('modal-vendor').value,
-            modalDescription: document.getElementById('modal-description').value,
-            modalAmount: document.getElementById('modal-amount').value,
-            modalDueDate: document.getElementById('modal-due-date').value
+    getBillValues(){
+        return {
+            id: this.id,
+            vendor: this.vendor,
+            description: this.description,
+            amount: this.amount,
+            dueDate: this.dueDate
         };
-
-
-        
-
     }
 
     handleOpenModal(){
-        this.openModal();
-        document.getElementById('modal-vendor').value = this.vendor;
-        document.getElementById('modal-description').value = this.description;
-        document.getElementById('modal-amount').value = this.amount;
-        document.getElementById('modal-due-date').value = this.dueDate;
+        const modalInfo = {
+            id: this.id,
+            vendor: this.vendor,
+            description: this.description,
+            amount: this.amount,
+            dueDate: this.dueDate,
+            modal: this.modal
+        };
+        this.openModal(modalInfo);
     }
 
     handleDeleteBill(){
