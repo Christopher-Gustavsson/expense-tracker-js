@@ -121,6 +121,9 @@ class ExpenseTracker{
         .then(resp => resp.json())
         .then(data => {
             if(data.success){
+                this.getBills();
+                this.closeModal();
+                this.clearInputs();
                 console.log('Updated bill in db');
             }
             else{
@@ -152,6 +155,10 @@ class ExpenseTracker{
         this.elementConfig.descriptionInput.value = '';
         this.elementConfig.amountInput.value= '';
         this.elementConfig.dueDateInput.value = '';
+        document.getElementById('modal-vendor').value = '';
+        document.getElementById('modal-description').value = '';
+        document.getElementById('modal-amount').value = '';
+        document.getElementById('modal-due-date').value = '';
     }
 
     removeAllBillElements(){
