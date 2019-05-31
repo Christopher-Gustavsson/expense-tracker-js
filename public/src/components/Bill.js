@@ -7,13 +7,19 @@ class Bill{
         this.description = billRequirements.description;
         this.amount = billRequirements.amount;
         this.dueDate = billRequirements.dueDate;
+
         this.deleteBill = billRequirements.deleteBill;
+        this.updateBill = billRequirements.updateBill;
+
+        this.modal = billRequirements.modal;
+        this.openModal = billRequirements.openModal;
         this.billDisplayArea = billRequirements.billDisplayArea;
+
         this.domElement = null;
 
         this.renderBill = this.renderBill.bind(this);
-        this.updateBill = this.updateBill.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
+        this.handleDeleteBill = this.handleDeleteBill.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
     }
 
     renderBill(){
@@ -33,23 +39,30 @@ class Bill{
             
             if(value === 'buttons'){
                 tableData.setAttribute('id', 'buttons-container');
-                const paidButton = document.createElement("BUTTON");
-                paidButton.innerHTML = 'Paid';
-                paidButton.setAttribute('id', 'paid-button')
 
                 const editButton = document.createElement("BUTTON");
-                editButton.innerHTML = 'Edit';
+                editButton.innerText = 'Edit';
                 editButton.setAttribute('id', 'edit-button');
-                editButton.addEventListener('click', this.handleDelete);
+                editButton.setAttribute('class', 'btn btn-warning');
+                editButton.addEventListener('click', this.handleOpenModal);
+                
+                const deleteButton = document.createElement("BUTTON");
+                deleteButton.setAttribute('id', 'paid-button')
+                deleteButton.setAttribute('class', 'btn btn-danger')
+                deleteButton.addEventListener('click', this.handleDeleteBill);
 
-                tableData.appendChild(paidButton);
+                const deleteIcon = document.createElement("I");
+                deleteIcon.setAttribute('class', 'far fa-trash-alt');
+
+                deleteButton.appendChild(deleteIcon);
                 tableData.appendChild(editButton);
+                tableData.appendChild(deleteButton);
             }
             else if(value === 'amount'){
-                tableData.innerHTML = `$${billValues[value].toFixed(2)}`;
+                tableData.innerText = `$${billValues[value].toFixed(2)}`;
             }
             else{
-                tableData.innerHTML = billValues[value];
+                tableData.innerText = billValues[value];
             }
 
             billTableRow.appendChild(tableData);
@@ -59,17 +72,35 @@ class Bill{
         this.billDisplayArea.appendChild(billTableRow);
     }
 
-    updateBill(){
-
+    getBillValues(){
+        return {
+            id: this.id,
+            vendor: this.vendor,
+            description: this.description,
+            amount: this.amount,
+            dueDate: this.dueDate
+        };
     }
 
-    handleDelete(){
+    handleOpenModal(){
+        const modalInfo = {
+            id: this.id,
+            vendor: this.vendor,
+            description: this.description,
+            amount: this.amount,
+            dueDate: this.dueDate,
+            modal: this.modal
+        };
+        this.openModal(modalInfo);
+    }
+
+    handleDeleteBill(){
         this.deleteBill(this.id);
         this.deleteRow(this.domElement);
     }
 
     deleteRow(row){
-        let index = row.parentNode.parentNode.rowIndex;
+        let index = row.sectionRowIndex;
         this.billDisplayArea.deleteRow(index);
     }
-}
+}   

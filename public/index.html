@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
     <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>     -->
     <meta name="viewport" content="initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/modal.css">
     <script src="./src/components/Bill.js"></script>
     <script src="./src/components/ExpenseTracker.js"></script>
     <script src="./src/main.js"></script>
@@ -27,6 +28,7 @@
             <small class="col-xs-offset-9 float-right">Total Due: <span class="total-expense"> 0</span></small>
         </h3>
     </div>
+
     <div class="student-add-form col-xs-12 col-lg-3 float-right">
         <h4>Add Bill</h4>
 
@@ -61,9 +63,9 @@
             <button type="button" class="add btn btn-success" id="add-button">Add</button>
             <button type="button" class="cancel btn btn-danger" id="cancel-button">Cancel</button>
         </div>
-        
-        <!-- <button type="button" class="get-server-data btn btn-default" id="getServerData">Get Server Data</button> -->
     </div>
+
+
     <div class="student-list-container page-header media-heading col-xs-12 col-md-12 col-lg-9">
         <table id = "student-list" class="student-list col-lg-12  table-hover">
             <thead>
@@ -83,6 +85,53 @@
 </div>
 
 
+<!-- MODAL -->
+<div id="simple-modal" class="modal">
+	<div class="modal-content">
+        <span class="close-button">&times;</span>
+        
+        <div class="view-project">
+            <div class="view-project-content pt-10">
+                <div class="modal-title">
+                    <h2 class="mx-auto">Update bill</h2>
+
+                </div>
+                <div class="input-group mb-3 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-file-invoice"></i></span>
+                        </div>
+                        <input type="text" name="vendor" id="modal-vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1">
+                    </div>
+            
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-sticky-note"></i></span>
+                        </div>
+                        <input type="text" name="description" id="modal-description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1">
+                    </div>
+            
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                        </div>
+                        <input type="text" name="amount" id="modal-amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1">
+                    </div>
+            
+                    <div class="input-group mb-3 ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
+                        </div>
+                        <input type="text" name="due-date" id="modal-due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="add btn btn-success" id="update-button">Update</button>
+                        <button type="button" class="cancel btn btn-danger" id="modal-cancel-button">Cancel</button>
+                    </div>
+            </div>
+        </div>
+        
+	</div>
+</div>
 
 </body>
 </html>
