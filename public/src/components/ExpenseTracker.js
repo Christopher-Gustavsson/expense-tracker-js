@@ -136,7 +136,7 @@ class ExpenseTracker{
     }
 
     outsideModalClick(e){
-        if(e.target == this.elementConfig.modal){
+        if(e.target === this.elementConfig.modal){
             this.elementConfig.modal.style.display = 'none';
         }
     }

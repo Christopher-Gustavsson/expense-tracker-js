@@ -15,7 +15,7 @@ class Bill{
 
         this.renderBill = this.renderBill.bind(this);
         this.updateBill = this.updateBill.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
+        this.handleDeleteBill = this.handleDeleteBill.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
     }
 
@@ -36,23 +36,28 @@ class Bill{
             
             if(value === 'buttons'){
                 tableData.setAttribute('id', 'buttons-container');
-                const paidButton = document.createElement("BUTTON");
-                paidButton.innerHTML = 'Paid';
-                paidButton.setAttribute('id', 'paid-button')
 
                 const editButton = document.createElement("BUTTON");
-                editButton.innerHTML = 'Edit';
+                editButton.innerText = 'Edit';
                 editButton.setAttribute('id', 'edit-button');
                 editButton.addEventListener('click', this.handleOpenModal);
+                
+                const deleteButton = document.createElement("BUTTON");
+                deleteButton.setAttribute('id', 'paid-button')
+                deleteButton.addEventListener('click', this.handleDeleteBill);
 
-                tableData.appendChild(paidButton);
+                const deleteIcon = document.createElement("I");
+                deleteIcon.setAttribute('class', 'far fa-trash-alt');
+
+                deleteButton.appendChild(deleteIcon);
                 tableData.appendChild(editButton);
+                tableData.appendChild(deleteButton);
             }
             else if(value === 'amount'){
-                tableData.innerHTML = `$${billValues[value].toFixed(2)}`;
+                tableData.innerText = `$${billValues[value].toFixed(2)}`;
             }
             else{
-                tableData.innerHTML = billValues[value];
+                tableData.innerText = billValues[value];
             }
 
             billTableRow.appendChild(tableData);
@@ -70,7 +75,7 @@ class Bill{
         this.openModal();
     }
 
-    handleDelete(){
+    handleDeleteBill(){
         this.deleteBill(this.id);
         this.deleteRow(this.domElement);
     }
