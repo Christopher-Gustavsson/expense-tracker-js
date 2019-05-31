@@ -14,7 +14,7 @@ class Bill{
         this.domElement = null;
 
         this.renderBill = this.renderBill.bind(this);
-        this.updateBill = this.updateBill.bind(this);
+        this.handleUpdateBill = this.handleUpdateBill.bind(this);
         this.handleDeleteBill = this.handleDeleteBill.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
     }
@@ -40,10 +40,12 @@ class Bill{
                 const editButton = document.createElement("BUTTON");
                 editButton.innerText = 'Edit';
                 editButton.setAttribute('id', 'edit-button');
+                editButton.setAttribute('class', 'btn btn-warning');
                 editButton.addEventListener('click', this.handleOpenModal);
                 
                 const deleteButton = document.createElement("BUTTON");
                 deleteButton.setAttribute('id', 'paid-button')
+                deleteButton.setAttribute('class', 'btn btn-danger')
                 deleteButton.addEventListener('click', this.handleDeleteBill);
 
                 const deleteIcon = document.createElement("I");
@@ -67,12 +69,25 @@ class Bill{
         this.billDisplayArea.appendChild(billTableRow);
     }
 
-    updateBill(){
+    handleUpdateBill(){
+        const updateRequirements = {
+            modalVendor: document.getElementById('modal-vendor').value,
+            modalDescription: document.getElementById('modal-description').value,
+            modalAmount: document.getElementById('modal-amount').value,
+            modalDueDate: document.getElementById('modal-due-date').value
+        };
+
+
+        
 
     }
 
     handleOpenModal(){
         this.openModal();
+        document.getElementById('modal-vendor').value = this.vendor;
+        document.getElementById('modal-description').value = this.description;
+        document.getElementById('modal-amount').value = this.amount;
+        document.getElementById('modal-due-date').value = this.dueDate;
     }
 
     handleDeleteBill(){

@@ -94,6 +94,9 @@ class ExpenseTracker{
     }
 
     updateBill(updateRequirements){
+        
+
+
     }
 
     deleteBill(bill_id){
@@ -129,6 +132,10 @@ class ExpenseTracker{
 
     openModal(){
         this.modal.style.display = 'block';
+        document.getElementById('modal-vendor').value = this.vendor;
+        document.getElementById('modal-description').value = this.description;
+        document.getElementById('modal-amount').value = this.amount;
+        document.getElementById('modal-due-date').value = this.dueDate;
     }
 
     closeModal(){
