@@ -1,7 +1,13 @@
-body{
+html{
     height: 100vh;
-    /* color: #88B8DF; */
+}
+
+body{
+    height: 100%;
+    margin: 0;
     background-image: linear-gradient(rgb(21, 73, 151), #2E92DE);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .page-header{
@@ -25,7 +31,8 @@ thead tr{
     color: rgb(247, 247, 247);
 }
 
-#display-area tr:hover{
+#display-area tr:hover,
+#display-area tr:hover i{
     color: white;
 }
 
@@ -42,4 +49,40 @@ td{
 th{
     padding-bottom: 1rem;
     font-size: 1.2rem;
+}
+
+#display-area tr .far,
+#display-area tr .fas{
+    font-size: 1.3rem;
+}
+
+#display-area tr:hover{
+    background-color: #6BA6DB;
+}
+
+#buttons-container i{
+    color: rgb(183, 206, 223);
+}
+/* #display-area tr:hover #delete-button{
+    border: 2px solid #ED4637;
+    transition: background-color .5s;
+    transition-timing-function: ease-in-out;
+}
+
+#display-area tr:hover #edit-button{
+    border: 2px solid #EF6230;
+    transition: background-color 0.5s;
+    transition-timing-function: ease-in-out;
+} */
+
+#edit-button{
+    margin-right: .3rem;
+}
+
+#basic-addon1{
+    background-color: #adadad;
+}
+
+.far, .fas{
+    color: #fff;
 }

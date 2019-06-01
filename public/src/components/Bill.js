@@ -56,7 +56,7 @@ class Bill{
     createEditButton(){
         const button = document.createElement("BUTTON");
         button.setAttribute('id', 'edit-button');
-        button.setAttribute('class', 'btn btn-info');
+        button.setAttribute('class', 'btn');
         button.addEventListener('click', this.handleOpenModal);
         const editIcon = document.createElement("I");
         editIcon.setAttribute('class', 'far fa-edit');
@@ -66,8 +66,8 @@ class Bill{
 
     createDeleteButton(){
         const button = document.createElement("BUTTON");
-        button.setAttribute('id', 'paid-button')
-        button.setAttribute('class', 'btn btn-danger')
+        button.setAttribute('id', 'delete-button')
+        button.setAttribute('class', 'btn')
         button.addEventListener('click', this.handleDeleteBill);
         const deleteIcon = document.createElement("I");
         deleteIcon.setAttribute('class', 'far fa-trash-alt');
