@@ -1,18 +1,31 @@
 
 class ExpenseTracker{
     constructor(elementConfig){
-        this.elementConfig = {
-            addButton: elementConfig.addButton,
-            cancelButton: elementConfig.cancelButton,
-            vendorInput: elementConfig.vendorInput,
-            descriptionInput: elementConfig.descriptionInput,
-            amountInput: elementConfig.amountInput,
-            dueDateInput: elementConfig.dueDateInput,
-            billDisplayArea: elementConfig.billDisplayArea,
-            modal: elementConfig.modal,
-            closeModalButton: elementConfig.closeModalButton,
-            updateButton: elementConfig.updateButton,
-            cancelModalButton: elementConfig.cancelModalButton
+
+        this.buttons = {
+            addButton: elementConfig.buttons.addButton,
+            cancelButton: elementConfig.buttons.cancelButton,
+            closeModalButton: elementConfig.buttons.closeModalButton,
+            updateButton: elementConfig.buttons.updateButton,
+            cancelModalButton: elementConfig.buttons.cancelModalButton
+        };
+
+        this.inputFields = {
+            vendor: elementConfig.inputFields.vendor,
+            description: elementConfig.inputFields.description,
+            amount: elementConfig.inputFields.amount,
+            DueDate: elementConfig.inputFields.DueDate,
+
+            modalVendor: elementConfig.inputFields.modalVendor,
+            modalDescription: elementConfig.inputFields.modalDescription,
+            modalAmount: elementConfig.inputFields.modalAmount,
+            modalDueDate: elementConfig.inputFields.modalDueDate
+        };
+
+        this.DOMAreas = {
+            billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
+            billListTable : elementConfig.DOMAreas.billListTable,
+            modal: elementConfig.DOMAreas.modal
         };
 
         this.updateId = null;
@@ -29,12 +42,11 @@ class ExpenseTracker{
     }
 
     addClickHandlers(){
-        this.elementConfig.addButton.addEventListener('click', this.addBill);
-        this.elementConfig.cancelButton.addEventListener('click', this.cancelBill);
-        this.elementConfig.updateButton.addEventListener('click', this.updateBill);
-
-        this.elementConfig.closeModalButton.addEventListener('click', this.closeModal);
-        this.elementConfig.cancelModalButton.addEventListener('click', this.closeModal);
+        this.buttons.addButton.addEventListener('click', this.addBill);
+        this.buttons.cancelButton.addEventListener('click', this.cancelBill);
+        this.buttons.updateButton.addEventListener('click', this.updateBill);
+        this.buttons.closeModalButton.addEventListener('click', this.closeModal);
+        this.buttons.cancelModalButton.addEventListener('click', this.closeModal);
         window.addEventListener('click', this.outsideModalClick);
     }
 
@@ -55,9 +67,9 @@ class ExpenseTracker{
                         dueDate: bill.dueDate,
                         deleteBill: this.deleteBill,
                         updateBill: this.updateBill,
-                        modal: this.elementConfig.modal,
+                        modal: this.DOMAreas.modal,
                         openModal: this.openModal,
-                        billDisplayArea: this.elementConfig.billDisplayArea
+                        billDisplayArea: this.DOMAreas.billDisplayArea
                     };
     
                     const newBill = new Bill(billRequirements);
@@ -73,10 +85,10 @@ class ExpenseTracker{
 
     addBill(){
         const queryParams = {
-            vendor: this.elementConfig.vendorInput.value,
-            description: this.elementConfig.descriptionInput.value,
-            amount: parseFloat(this.elementConfig.amountInput.value),
-            dueDate: this.elementConfig.dueDateInput.value,
+            vendor: this.inputFields.vendor.value,
+            description: this.inputFields.description.value,
+            amount: parseFloat(this.inputFields.amount.value),
+            dueDate: this.inputFields.DueDate.value,
         };
 
         fetch('api/bills', {
@@ -101,16 +113,14 @@ class ExpenseTracker{
     }
 
     updateBill(){
-        console.log('do we have id? pt3', this.updateId);
         const updateRequirements = {
             id: this.updateId,
-            vendor: document.getElementById('modal-vendor').value,
-            description: document.getElementById('modal-description').value,
-            amount: document.getElementById('modal-amount').value,
-            dueDate: document.getElementById('modal-due-date').value
+            vendor: this.inputFields.modalVendor.value,
+            description: this.inputFields.modalDescription.value,
+            amount: this.inputFields.modalAmount.value,
+            dueDate: this.inputFields.modalDueDate.value
         };
 
-        console.log('do we have id? pt4', updateRequirements.id);
         fetch('api/bills/update', {
             method: 'POST',
             body: JSON.stringify(updateRequirements),
@@ -151,53 +161,41 @@ class ExpenseTracker{
     }
 
     clearInputs(){
-        this.elementConfig.vendorInput.value = '';
-        this.elementConfig.descriptionInput.value = '';
-        this.elementConfig.amountInput.value= '';
-        this.elementConfig.dueDateInput.value = '';
-        document.getElementById('modal-vendor').value = '';
-        document.getElementById('modal-description').value = '';
-        document.getElementById('modal-amount').value = '';
-        document.getElementById('modal-due-date').value = '';
+        this.inputFields.vendor.value = '';
+        this.inputFields.description.value = '';
+        this.inputFields.amount.value= '';
+        this.inputFields.DueDate.value = '';
+        this.inputFields.modalVendor.value = '';
+        this.inputFields.modalDescription.value = '';
+        this.inputFields.modalAmount.value = '';
+        this.inputFields.modalDueDate.value = '';
     }
 
     removeAllBillElements(){
-        let table = document.getElementById('student-list');
+        let table = this.DOMAreas.billListTable;
         for (let i = table.rows.length - 1; i > 0; i--){
             table.deleteRow(i);
         }
     }
 
-    getCurrentBill(){
-        return {
-            id: this.id,
-            vendor: this.vendor,
-            description: this.description,
-            amount: this.amount,
-            dueDate: this.dueDate
-        };
-    }
     openModal(modalInfo){
         modalInfo.modal.style.display = 'block';
-        document.getElementById('modal-vendor').value = modalInfo.vendor;
-        document.getElementById('modal-description').value = modalInfo.description;
-        document.getElementById('modal-amount').value = modalInfo.amount;
-        document.getElementById('modal-due-date').value = modalInfo.dueDate;
+        this.inputFields.modalVendor.value = modalInfo.vendor;
+        this.inputFields.modalDescription.value = modalInfo.description;
+        this.inputFields.modalAmount.value = modalInfo.amount;
+        this.inputFields.modalDueDate.value = modalInfo.dueDate;
        
         this.updateId = modalInfo.id;
-
-        console.log('do we have id? pt1', this.updateId);
     }
 
     closeModal(){
-        this.elementConfig.modal.style.display = 'none';
+        this.DOMAreas.modal.style.display = 'none';
     }
 
     outsideModalClick(e){
-        if(e.target === this.elementConfig.modal){
-            this.elementConfig.modal.style.display = 'none';
+        if(e.target === this.DOMAreas.modal){
+            this.DOMAreas.modal.style.display = 'none';
         }
-        console.log('do we have id? outsideModalClick', this.updateId);
     }
 }
 
