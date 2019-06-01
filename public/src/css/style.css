@@ -1,15 +1,42 @@
+body{
+    height: 100vh;
+    /* color: #88B8DF; */
+    background-image: linear-gradient(rgb(21, 73, 151), #2E92DE);
+}
+
 .page-header{
     padding: 30px 0px;
+    color: rgb(247, 247, 247);
+}
+
+.page-header h1,
+.page-header h3{
+    background-color: rgb(14, 46, 103);
+    padding: 1rem;
+    border-radius: 10px;
+    line-height: 100%;
+}
+
+.bill-add-form h4{
+    color: rgb(247, 247, 247);
+}
+
+thead tr{
+    color: rgb(247, 247, 247);
+}
+
+#display-area tr:hover{
+    color: white;
 }
 
 tr{
-    border-bottom: 1px solid #dbdbdb;
-    
+    color: rgb(183, 206, 223);
+    border-bottom: 1px solid #7BB8E5;
 }
 
 td{
     padding: 1rem 0;
-    border-bottom: 1px solid #dbdbdb;
+    border-bottom: 1px solid #7BB8E5;
 }
 
 th{
