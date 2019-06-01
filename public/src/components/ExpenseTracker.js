@@ -14,7 +14,7 @@ class ExpenseTracker{
             vendor: elementConfig.inputFields.vendor,
             description: elementConfig.inputFields.description,
             amount: elementConfig.inputFields.amount,
-            DueDate: elementConfig.inputFields.DueDate,
+            DueDate: elementConfig.inputFields.dueDate,
 
             modalVendor: elementConfig.inputFields.modalVendor,
             modalDescription: elementConfig.inputFields.modalDescription,
@@ -88,7 +88,7 @@ class ExpenseTracker{
             vendor: this.inputFields.vendor.value,
             description: this.inputFields.description.value,
             amount: parseFloat(this.inputFields.amount.value),
-            dueDate: this.inputFields.DueDate.value,
+            dueDate: this.inputFields.DueDate.value
         };
 
         fetch('api/bills', {
