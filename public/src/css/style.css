@@ -60,6 +60,10 @@ th{
     background-color: #6BA6DB;
 }
 
+#buttons-container{
+    position: relative;
+    right: 12px;
+}
 #buttons-container i{
     color: rgb(183, 206, 223);
 }
