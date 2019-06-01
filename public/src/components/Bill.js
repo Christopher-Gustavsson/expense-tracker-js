@@ -30,31 +30,14 @@ class Bill{
             dueDate: this.dueDate,
             buttons: null
         }
-
         const billTableRow = document.createElement("TR");
-        
         // Loop trough keys in billValues, if the key is 'buttons' render paid and edit buttons, otherwise render input-data
         for (let value in billValues){
             const tableData = document.createElement("TD");
-            
             if(value === 'buttons'){
                 tableData.setAttribute('id', 'buttons-container');
-
-                const editButton = document.createElement("BUTTON");
-                editButton.innerText = 'Edit';
-                editButton.setAttribute('id', 'edit-button');
-                editButton.setAttribute('class', 'btn btn-warning');
-                editButton.addEventListener('click', this.handleOpenModal);
-                
-                const deleteButton = document.createElement("BUTTON");
-                deleteButton.setAttribute('id', 'paid-button')
-                deleteButton.setAttribute('class', 'btn btn-danger')
-                deleteButton.addEventListener('click', this.handleDeleteBill);
-
-                const deleteIcon = document.createElement("I");
-                deleteIcon.setAttribute('class', 'far fa-trash-alt');
-
-                deleteButton.appendChild(deleteIcon);
+                const editButton = this.createEditButton();
+                const deleteButton = this.createDeleteButton();
                 tableData.appendChild(editButton);
                 tableData.appendChild(deleteButton);
             }
@@ -64,12 +47,32 @@ class Bill{
             else{
                 tableData.innerText = billValues[value];
             }
-
             billTableRow.appendChild(tableData);
             this.domElement = billTableRow;
         }
-
         this.billDisplayArea.appendChild(billTableRow);
+    }
+
+    createEditButton(){
+        const button = document.createElement("BUTTON");
+        button.setAttribute('id', 'edit-button');
+        button.setAttribute('class', 'btn btn-info');
+        button.addEventListener('click', this.handleOpenModal);
+        const editIcon = document.createElement("I");
+        editIcon.setAttribute('class', 'far fa-edit');
+        button.appendChild(editIcon);
+        return button;
+    }
+
+    createDeleteButton(){
+        const button = document.createElement("BUTTON");
+        button.setAttribute('id', 'paid-button')
+        button.setAttribute('class', 'btn btn-danger')
+        button.addEventListener('click', this.handleDeleteBill);
+        const deleteIcon = document.createElement("I");
+        deleteIcon.setAttribute('class', 'far fa-trash-alt');
+        button.appendChild(deleteIcon);
+        return button;
     }
 
     getBillValues(){
