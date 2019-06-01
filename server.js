@@ -23,9 +23,10 @@ server.post('/api/bills', (req, resp) => {
     }
 
     db.connect(() => {
+        const formattedDueDate = formatDate(dueDate);
         const query = 'INSERT INTO `bills` SET `vendor`= ?, `description`= ?, `amount`= ?, `dueDate`= ?';
         
-        db.query(query, [vendor, description, amount, dueDate], (error, data) => {
+        db.query(query, [vendor, description, amount, formattedDueDate], (error, data) => {
             if(!error){
                 resp.send({
                     success: true,
@@ -74,9 +75,10 @@ server.post('/api/bills/update', (req, resp) => {
     }
 
     db.connect(() => {
+        const formattedDueDate = formatDate(dueDate);
         const query = 'UPDATE `bills` SET `vendor`= ?, `description`= ?, `amount`= ?, `dueDate`= ? WHERE `id` = ?';
 
-        db.query(query, [vendor, description, parseFloat(amount), dueDate, id], (error) => {
+        db.query(query, [vendor, description, parseFloat(amount), formattedDueDate, id], (error) => {
             if(!error){
                 resp.send({
                     success: true
@@ -119,6 +121,14 @@ server.delete('/api/bills/:bill_id', (req, resp) => {
         });
     });
 });
+
+function formatDate(date){
+    const year = date.slice(0,4);
+    const month = date.slice(5,7);
+    const day = date.slice(8);
+    const formattedDate = `${month}-${day}-${year}`;
+    return formattedDate;
+}
 
 server.listen(3000, () => {
     console.log('Server is running on port 3000');
