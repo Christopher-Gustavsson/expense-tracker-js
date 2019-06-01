@@ -183,9 +183,17 @@ class ExpenseTracker{
         this.inputFields.modalVendor.value = modalInfo.vendor;
         this.inputFields.modalDescription.value = modalInfo.description;
         this.inputFields.modalAmount.value = modalInfo.amount;
-        this.inputFields.modalDueDate.value = modalInfo.dueDate;
+        this.inputFields.modalDueDate.value = this.formatModalDate(modalInfo.dueDate);
        
         this.updateId = modalInfo.id;
+    }
+
+    formatModalDate(date){
+        const year = date.slice(6);
+        const month = date.slice(0,2);
+        const day = date.slice(3,5);
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
     }
 
     closeModal(){
