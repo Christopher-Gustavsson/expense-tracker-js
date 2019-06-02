@@ -38,14 +38,15 @@
                     <span class="input-group-text" id="basic-addon1"><i class="far fa-file-alt"></i></span>
                 </div>
                 <input type="text" name="vendor" id="vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1" required>
-                <div class="invalid-feedback">Error: Please enter a Vendor name</div>
+                <div class="invalid-feedback">Error: Please enter a Vendor name.</div>
             </div>
                 
             <div class="input-group mb-3 ">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-pencil-alt"></i></span>
                 </div>
-                <input type="text" name="description" id="description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1">
+                <input type="text" name="description" id="description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" required>
+                <div class="invalid-feedback">Error: Please enter a Vendor name.</div>
             </div>
 
             <div class="input-group mb-3 ">
@@ -53,6 +54,7 @@
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
                 </div>
                 <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1" required>
+                <div class="invalid-feedback">Error: Please enter a valid amount.</div>
             </div>
 
             <div class="input-group mb-3 ">
@@ -60,6 +62,7 @@
                     <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
                 </div>
                 <input type="date" name="due-date" id="due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1" required>
+                <div class="invalid-feedback">Error: Please select a date.</div>
             </div>
             <div class="mb-3">
                 <button type="submit" class="add btn btn-success" id="add-button">Add</button>

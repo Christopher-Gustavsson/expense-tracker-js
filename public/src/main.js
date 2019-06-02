@@ -28,12 +28,13 @@ function startApp(){
         }
     });
 
-   expenseTracker.addClickHandlers();
-   expenseTracker.getBills();
+    expenseTracker.addClickHandlers();
+    expenseTracker.getBills();
 
-
-   const mainForm = document.querySelectorAll('.needs-validation')[0];
-   mainForm.addEventListener('submit', event => {
+    
+    const mainForm = expenseTracker.DOMAreas.mainForm;
+    mainForm.addEventListener('submit', event => {
+       
        if(mainForm.checkValidity() === false){
            event.preventDefault();
            event.stopPropagation();

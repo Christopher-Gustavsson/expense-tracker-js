@@ -44,7 +44,6 @@ class ExpenseTracker{
 
     addClickHandlers(){
         this.DOMAreas.mainForm.addEventListener('submit', this.addBill);
-        // this.buttons.addButton.addEventListener('click', this.addBill);
         this.buttons.cancelButton.addEventListener('click', this.cancelBill);
         this.buttons.updateButton.addEventListener('click', this.updateBill);
         this.buttons.closeModalButton.addEventListener('click', this.closeModal);
@@ -86,6 +85,7 @@ class ExpenseTracker{
     }
 
     addBill(){
+        debugger;
         const queryParams = {
             vendor: this.inputFields.vendor.value,
             description: this.inputFields.description.value,
@@ -114,14 +114,8 @@ class ExpenseTracker{
                 console.log('Error could not add to db....', data.error);
             }
         });
-
         this.getBills();
-        this.clearInputs();
         return true;
-    }
-
-    isValidated(fields){
-
     }
 
     updateBill(){
