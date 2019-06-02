@@ -93,6 +93,11 @@ class ExpenseTracker{
             dueDate: this.inputFields.DueDate.value
         };
 
+        const {vendor, amount, dueDate} = queryParams;
+        if(!vendor || !amount || !dueDate){
+            return false;
+        }
+
         fetch('api/bills', {
             method: 'POST',
             body: JSON.stringify(queryParams),
@@ -112,6 +117,7 @@ class ExpenseTracker{
 
         this.getBills();
         this.clearInputs();
+        return true;
     }
 
     isValidated(fields){
