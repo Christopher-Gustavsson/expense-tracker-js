@@ -23,6 +23,7 @@ class ExpenseTracker{
         };
 
         this.DOMAreas = {
+            mainForm: elementConfig.DOMAreas.mainForm,
             billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
             billListTable : elementConfig.DOMAreas.billListTable,
             modal: elementConfig.DOMAreas.modal
@@ -42,7 +43,8 @@ class ExpenseTracker{
     }
 
     addClickHandlers(){
-        this.buttons.addButton.addEventListener('click', this.addBill);
+        this.DOMAreas.mainForm.addEventListener('submit', this.addBill);
+        // this.buttons.addButton.addEventListener('click', this.addBill);
         this.buttons.cancelButton.addEventListener('click', this.cancelBill);
         this.buttons.updateButton.addEventListener('click', this.updateBill);
         this.buttons.closeModalButton.addEventListener('click', this.closeModal);
@@ -110,6 +112,10 @@ class ExpenseTracker{
 
         this.getBills();
         this.clearInputs();
+    }
+
+    isValidated(fields){
+
     }
 
     updateBill(){

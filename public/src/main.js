@@ -21,6 +21,7 @@ function startApp(){
             modalDueDate: document.querySelectorAll('input[type="date"]')[1],
         },
         DOMAreas: {
+            mainForm: document.querySelectorAll('.needs-validation')[0],
             billDisplayArea: document.getElementById('display-area'),
             modal: document.getElementById('simple-modal'),
             billListTable: document.getElementById('bill-list')
@@ -29,5 +30,15 @@ function startApp(){
 
    expenseTracker.addClickHandlers();
    expenseTracker.getBills();
+
+
+   const mainForm = document.querySelectorAll('.needs-validation')[0];
+   mainForm.addEventListener('submit', event => {
+       if(mainForm.checkValidity() === false){
+           event.preventDefault();
+           event.stopPropagation();
+       }
+       mainForm.classList.add('was-validated');
+   });
 }
 

@@ -29,42 +29,44 @@
         </h3>
     </div>
 
-    <div class="bill-add-form col-xs-12 col-lg-3 float-md-right">
-        <h4>Add Bill</h4>
+    <form class="main-form needs-validation" novalidate>
+        <div class="bill-add-form col-xs-12 col-lg-3 float-md-right">
+            <h4>Add Bill</h4>
 
-        <div class="input-group mb-3 ">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="far fa-file-alt"></i></span>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="far fa-file-alt"></i></span>
+                </div>
+                <input type="text" name="vendor" id="vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1" required>
+                <div class="invalid-feedback">Error: Please enter a Vendor name</div>
             </div>
-            <input type="text" name="vendor" id="vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1">
-        </div>
-
-        <div class="input-group mb-3 ">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-pencil-alt"></i></span>
+                
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-pencil-alt"></i></span>
+                </div>
+                <input type="text" name="description" id="description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1">
             </div>
-            <input type="text" name="description" id="description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1">
-        </div>
 
-        <div class="input-group mb-3 ">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1" required>
             </div>
-            <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1">
-        </div>
 
-        <div class="input-group mb-3 ">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
+                </div>
+                <input type="date" name="due-date" id="due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1" required>
             </div>
-            <input type="date" name="due-date" id="due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1">
+            <div class="mb-3">
+                <button type="submit" class="add btn btn-success" id="add-button">Add</button>
+                <button type="button" class="cancel btn btn-danger" id="cancel-button">Cancel</button>
+            </div>
         </div>
-        <div class="mb-3">
-            <button type="button" class="add btn btn-success" id="add-button">Add</button>
-            <button type="button" class="cancel btn btn-danger" id="cancel-button">Cancel</button>
-        </div>
-    </div>
-
+    </form>
 
     <div class="bill-list-container page-header media-heading col-xs-12 col-md-12 col-lg-9">
         <table id = "bill-list" class="bill-list col-lg-12  table-hover">
