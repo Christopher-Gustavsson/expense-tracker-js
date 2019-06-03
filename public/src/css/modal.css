@@ -1,13 +1,5 @@
-.button{
-    background-color: coral;
-    padding: 1em 2em;
-    font-size: 17px;
-    line-height:1.6;
-    color: white;
-    border: 0;
-  }
-  
-  .modal, .delete-modal{
+
+    .modal, .delete-modal{
     display: none;
     position: fixed;
     z-index: 2;
@@ -25,7 +17,7 @@
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.2);
     border-radius: 2px;
     max-width: 525px;
-    margin: 1.75rem auto;
+    margin: 10% auto;
     animation-name: modalOpen;
     animation-duration: 0.5s;
   }
