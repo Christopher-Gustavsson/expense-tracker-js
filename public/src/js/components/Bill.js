@@ -20,7 +20,6 @@ class Bill{
         this.domElement = null;
 
         this.renderBill = this.renderBill.bind(this);
-        // this.handleDeleteBill = this.handleDeleteBill.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleOpenDeleteModal = this.handleOpenDeleteModal.bind(this);
     }
@@ -107,18 +106,9 @@ class Bill{
             description: this.description,
             amount: this.amount,
             dueDate: this.dueDate,
-            deleteModal: this.deleteModal
+            deleteModal: this.deleteModal,
+            rowToBeDeleted: this.domElement
         }
         this.openDeleteModal(deleteModalInfo);
-    }
-
-    // handleDeleteBill(){
-    //     this.deleteBill(this.id);
-    //     this.deleteRow(this.domElement);
-    // }
-
-    deleteRow(row){
-        let index = row.sectionRowIndex;
-        this.billDisplayArea.deleteRow(index);
     }
 }   

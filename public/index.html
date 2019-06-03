@@ -91,111 +91,92 @@
 </div>
 
 
-<!-- UPDATE MODAL -->
+<!-- UPDATE BILL MODAL -->
 <div id="update-modal" class="modal">
 	<div class="modal-content">
         <span class="close-button">&times;</span>
-        
-        <div class="view-project">
-            <div class="view-project-content pt-10">
-                <div class="modal-title">
-                    <h2 class="mx-auto">Update bill</h2>
-                </div>
-
-                <form class="modal-form needs-validation" novalidate>
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="far fa-file-alt"></i></span>
-                        </div>
-                        <input type="text" name="vendor" id="modal-vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1" required>
-                        <div class="invalid-feedback">Error: Please enter a vendor name.</div>
-                    </div>
-                
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-pencil-alt"></i></span>
-                        </div>
-                        <input type="text" name="description" id="modal-description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" required>
-                        <div class="invalid-feedback">Error: Please enter a description.</div>
-                    </div>
-            
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
-                        </div>
-                        <input type="text" name="amount" id="modal-amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1" pattern="^[0-9]*\.?[0-9]?[0-9]?" required>
-                        <div class="invalid-feedback">Error: Please enter a valid amount.</div>
-                    </div>
-            
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
-                        </div>
-                        <input type="date" name="due-date" id="modal-due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1" required>
-                        <div class="invalid-feedback">Error: Please select a date.</div>
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="add btn btn-success" id="update-button">Update</button>
-                        <button type="button" class="cancel btn btn-danger" id="modal-cancel-button">Cancel</button>
-                    </div>
-                </form> 
-            </div>
+        <div class="modal-title">
+            <h2 class="mx-auto">Update bill</h2>
         </div>
+
+        <form class="modal-form needs-validation" novalidate>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="far fa-file-alt"></i></span>
+                </div>
+                <input type="text" name="vendor" id="modal-vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1" required>
+                <div class="invalid-feedback">Error: Please enter a vendor name.</div>
+            </div>
         
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-pencil-alt"></i></span>
+                </div>
+                <input type="text" name="description" id="modal-description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" required>
+                <div class="invalid-feedback">Error: Please enter a description.</div>
+            </div>
+    
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="text" name="amount" id="modal-amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1" pattern="^[0-9]*\.?[0-9]?[0-9]?" required>
+                <div class="invalid-feedback">Error: Please enter a valid amount.</div>
+            </div>
+    
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
+                </div>
+                <input type="date" name="due-date" id="modal-due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1" required>
+                <div class="invalid-feedback">Error: Please select a date.</div>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="add btn btn-success" id="update-button">Update</button>
+                <button type="button" class="cancel btn btn-danger" id="modal-cancel-button">Cancel</button>
+            </div>
+        </form> 
 	</div>
 </div>
 
-<!-- DELETE MODAL -->
+<!-- DELETE BILL MODAL -->
 <div id="delete-modal" class="delete-modal">
 	<div class="modal-content">
         <span class="close-button">&times;</span>
-        
-        <div class="view-project">
-            <div class="view-project-content pt-10">
-                <div class="modal-title">
-                    <h2 class="mx-auto">Remove bill</h2>
-                </div>
-
-                
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="far fa-file-alt"></i></span>
-                        </div>
-                        <input type="text" name="vendor" id="delete-modal-vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1" readonly>
-                        <div class="invalid-feedback">Error: Please enter a vendor name.</div>
-                    </div>
-                
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-pencil-alt"></i></span>
-                        </div>
-                        <input type="text" name="description" id="delete-modal-description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" readonly>
-                        <div class="invalid-feedback">Error: Please enter a description.</div>
-                    </div>
-            
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
-                        </div>
-                        <input type="text" name="amount" id="delete-modal-amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1" pattern="^[0-9]*\.?[0-9]?[0-9]?" readonly>
-                        <div class="invalid-feedback">Error: Please enter a valid amount.</div>
-                    </div>
-            
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
-                        </div>
-                        <input type="date" name="due-date" id="delete-modal-due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1" readonly>
-                        <div class="invalid-feedback">Error: Please select a date.</div>
-                    </div>
-                    <div class="mb-3">
-                        <button type="button" class="add btn btn-success" id="confirm-delete-button">Remove</button>
-                        <button type="button" class="cancel btn btn-danger" id="cancel-delete-button">Cancel</button>
-                    </div>
-                
+            <div class="modal-title">
+                <h2 class="mx-auto">Are you sure you want to remove this bill?</h2>
             </div>
-        </div>
+
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="far fa-file-alt"></i></span>
+                </div>
+                <input type="text" name="vendor" id="delete-modal-vendor" class="form-control" placeholder="Vendor" aria-label="vendor" aria-describedby="basic-addon1" readonly>
+            </div>
         
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-pencil-alt"></i></span>
+                </div>
+                <input type="text" name="description" id="delete-modal-description" class="form-control" placeholder="Description" aria-label="description" aria-describedby="basic-addon1" readonly>
+            </div>
+    
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-dollar-sign"></i></span>
+                </div>
+                <input type="text" name="amount" id="delete-modal-amount" class="form-control" placeholder="Amount" aria-label="amount" aria-describedby="basic-addon1" readonly>
+            </div>
+            <div class="input-group mb-3 ">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="far fa-calendar"></i></span>
+                </div>
+                <input type="date" name="due-date" id="delete-modal-due-date" class="form-control" placeholder="Due date" aria-label="due-date" aria-describedby="basic-addon1" readonly>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="add btn btn-success" id="confirm-delete-button">Remove</button>
+                <button type="button" class="cancel btn btn-danger" id="cancel-delete-button">Cancel</button>
+            </div>
 	</div>
 </div>
 

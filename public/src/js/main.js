@@ -6,9 +6,11 @@ function startApp(){
         buttons: {
             addButton: document.getElementById('add-button'),
             cancelButton: document.getElementById('cancel-button'),
-            closeModalButton: document.querySelector('.close-button'),
+            closeModalButton: document.querySelectorAll('.close-button')[0],
+            closeDeleteModalButton: document.querySelectorAll('.close-button')[1],
             updateButton: document.getElementById('update-button'),
             cancelModalButton: document.getElementById('modal-cancel-button'),
+            cancelDeleteModalButton: document.getElementById('cancel-delete-button'),
             confirmDeleteButton: document.getElementById('confirm-delete-button'),
             cancelDeleteButton: document.getElementById('cancel-delete-button')
         },
