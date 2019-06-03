@@ -19,7 +19,7 @@
     background-color: rgba(0,0,0,0.5);
   }
   .delete-modal{
-    display: block;
+    display: none;
     position: fixed;
     z-index: 2;
     left: 0;
