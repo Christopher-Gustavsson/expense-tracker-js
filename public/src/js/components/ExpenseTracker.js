@@ -32,6 +32,8 @@ class ExpenseTracker{
         };
 
         this.DOMAreas = {
+            totalExpenseLg: elementConfig.DOMAreas.totalExpenseLg,
+            totalExpenseSm: elementConfig.DOMAreas.totalExpenseSm,
             mainForm: elementConfig.DOMAreas.mainForm,
             modalForm: elementConfig.DOMAreas.modalForm,
             billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
@@ -104,6 +106,7 @@ class ExpenseTracker{
                     this.allBills.push(newBill);
                     newBill.renderBill();
                 });
+                this.getTotalExpenses();
             }
         })
         .catch(err => {
@@ -194,6 +197,19 @@ class ExpenseTracker{
                 console.log('Bill not deleted...')
             }
         });
+    }
+
+    getTotalExpenses(){
+        const domElementLg = this.DOMAreas.totalExpenseLg;
+        const domElementSm = this.DOMAreas.totalExpenseSm;
+        let total = 0;
+
+        for (let index = 0; index < this.allBills.length; index++){
+            total+= this.allBills[index].amount;
+        }
+        
+        domElementLg.innerText = total;
+        domElementSm.innerText = total;
     }
 
     cancelBill(){

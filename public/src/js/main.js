@@ -29,6 +29,8 @@ function startApp(){
             deleteModalDueDate: document.getElementById('delete-modal-due-date')
         },
         DOMAreas: {
+            totalExpenseLg: document.querySelectorAll('.total-expense')[0],
+            totalExpenseSm: document.querySelectorAll('.total-expense')[1],
             mainForm: document.querySelectorAll('.needs-validation')[0],
             modalForm: document.querySelectorAll('.needs-validation')[1],
             billDisplayArea: document.getElementById('display-area'),
