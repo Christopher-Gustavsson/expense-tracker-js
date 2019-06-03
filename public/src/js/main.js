@@ -24,7 +24,7 @@ function startApp(){
             mainForm: document.querySelectorAll('.needs-validation')[0],
             modalForm: document.querySelectorAll('.needs-validation')[1],
             billDisplayArea: document.getElementById('display-area'),
-            modal: document.getElementById('simple-modal'),
+            modal: document.getElementById('update-modal'),
             billListTable: document.getElementById('bill-list')
         }
     });

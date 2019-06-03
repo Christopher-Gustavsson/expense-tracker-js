@@ -144,7 +144,6 @@ class ExpenseTracker{
             if(data.success){
                 this.getBills();
                 this.closeModal();
-                this.clearInputs();
                 console.log('Updated bill in db');
             }
             else{
