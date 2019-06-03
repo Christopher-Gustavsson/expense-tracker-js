@@ -47,7 +47,6 @@ class ExpenseTracker{
         this.DOMAreas.mainForm.addEventListener('submit', this.addBill);
         this.DOMAreas.modalForm.addEventListener('submit', this.updateBill);
         this.buttons.cancelButton.addEventListener('click', this.cancelBill);
-        // this.buttons.updateButton.addEventListener('click', this.updateBill);
         this.buttons.closeModalButton.addEventListener('click', this.closeModal);
         this.buttons.cancelModalButton.addEventListener('click', this.closeModal);
         window.addEventListener('click', this.outsideModalClick);
@@ -87,7 +86,6 @@ class ExpenseTracker{
     }
 
     addBill(){
-        debugger;
         const queryParams = {
             vendor: this.inputFields.vendor.value,
             description: this.inputFields.description.value,
@@ -95,8 +93,8 @@ class ExpenseTracker{
             dueDate: this.inputFields.DueDate.value
         };
 
-        const {vendor, amount, dueDate} = queryParams;
-        if(!vendor || !amount || !dueDate){
+        const {vendor, description, amount, dueDate} = queryParams;
+        if(!vendor || !description || !amount || !dueDate){
             return false;
         }
 
@@ -129,8 +127,8 @@ class ExpenseTracker{
             dueDate: this.inputFields.modalDueDate.value
         };
 
-        const {vendor, amount, dueDate} = queryParams;
-        if(!vendor || !amount || !dueDate){
+        const {vendor, description, amount, dueDate} = updateRequirements;
+        if(!vendor || !description || !amount || !dueDate){
             return false;
         }
 
@@ -171,6 +169,7 @@ class ExpenseTracker{
 
     cancelBill(){
         this.clearInputs();
+        this.DOMAreas.mainForm.classList.remove('was-validated');
     }
 
     clearInputs(){
@@ -178,10 +177,6 @@ class ExpenseTracker{
         this.inputFields.description.value = '';
         this.inputFields.amount.value= '';
         this.inputFields.DueDate.value = '';
-        this.inputFields.modalVendor.value = '';
-        this.inputFields.modalDescription.value = '';
-        this.inputFields.modalAmount.value = '';
-        this.inputFields.modalDueDate.value = '';
     }
 
     removeAllBillElements(){
@@ -211,11 +206,12 @@ class ExpenseTracker{
 
     closeModal(){
         this.DOMAreas.modal.style.display = 'none';
+        this.DOMAreas.modalForm.classList.remove('was-validated');
     }
 
     outsideModalClick(e){
         if(e.target === this.DOMAreas.modal){
-            this.DOMAreas.modal.style.display = 'none';
+            this.closeModal();
         }
     }
 }
