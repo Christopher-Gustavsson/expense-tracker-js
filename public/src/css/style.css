@@ -91,4 +91,21 @@ th{
     color: #fff;
 }
 
+/* .fa-dollar-sign{
+    width:100%;
+} */
+
+.input-group-text{ 
+    width: 39px;
+}
+.input-group-text > i {
+    width: 100%;
+}
+
+/* #amount,
+#modal-amount,
+#delete-modal-amount{
+    width:39px;
+} */
+
 
