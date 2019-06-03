@@ -31,25 +31,5 @@ function startApp(){
 
     expenseTracker.addClickHandlers();
     expenseTracker.getBills();
-
-    
-    const mainForm = expenseTracker.DOMAreas.mainForm;
-    mainForm.addEventListener('submit', event => {
-       
-       if(mainForm.checkValidity() === false){
-           event.preventDefault();
-           event.stopPropagation();
-       }
-       mainForm.classList.add('was-validated');
-   });
-
-   const modalForm = expenseTracker.DOMAreas.modalForm;
-   modalForm.addEventListener('submit', event => {
-       if(modalForm.checkValidity() === false){
-           event.preventDefault();
-           event.stopPropagation();
-       }
-       modalForm.classList.add('was-validated');
-   });
 }
 
