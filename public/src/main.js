@@ -22,6 +22,7 @@ function startApp(){
         },
         DOMAreas: {
             mainForm: document.querySelectorAll('.needs-validation')[0],
+            modalForm: document.querySelectorAll('.needs-validation')[1],
             billDisplayArea: document.getElementById('display-area'),
             modal: document.getElementById('simple-modal'),
             billListTable: document.getElementById('bill-list')
@@ -40,6 +41,15 @@ function startApp(){
            event.stopPropagation();
        }
        mainForm.classList.add('was-validated');
+   });
+
+   const modalForm = expenseTracker.DOMAreas.modalForm;
+   modalForm.addEventListener('submit', event => {
+       if(modalForm.checkValidity() === false){
+           event.preventDefault();
+           event.stopPropagation();
+       }
+       modalForm.classList.add('was-validated');
    });
 }
 

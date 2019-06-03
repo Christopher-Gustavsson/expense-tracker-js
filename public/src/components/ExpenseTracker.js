@@ -24,6 +24,7 @@ class ExpenseTracker{
 
         this.DOMAreas = {
             mainForm: elementConfig.DOMAreas.mainForm,
+            modalForm: elementConfig.DOMAreas.modalForm,
             billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
             billListTable : elementConfig.DOMAreas.billListTable,
             modal: elementConfig.DOMAreas.modal
@@ -44,8 +45,9 @@ class ExpenseTracker{
 
     addClickHandlers(){
         this.DOMAreas.mainForm.addEventListener('submit', this.addBill);
+        this.DOMAreas.modalForm.addEventListener('submit', this.updateBill);
         this.buttons.cancelButton.addEventListener('click', this.cancelBill);
-        this.buttons.updateButton.addEventListener('click', this.updateBill);
+        // this.buttons.updateButton.addEventListener('click', this.updateBill);
         this.buttons.closeModalButton.addEventListener('click', this.closeModal);
         this.buttons.cancelModalButton.addEventListener('click', this.closeModal);
         window.addEventListener('click', this.outsideModalClick);
@@ -127,6 +129,11 @@ class ExpenseTracker{
             dueDate: this.inputFields.modalDueDate.value
         };
 
+        const {vendor, amount, dueDate} = queryParams;
+        if(!vendor || !amount || !dueDate){
+            return false;
+        }
+
         fetch('api/bills/update', {
             method: 'POST',
             body: JSON.stringify(updateRequirements),
@@ -146,7 +153,7 @@ class ExpenseTracker{
                 console.log('Error coud not update bill in db...', data.error);
             }
         });
-
+        return true;
     }
 
     deleteBill(bill_id){
