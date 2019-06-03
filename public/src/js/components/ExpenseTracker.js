@@ -80,6 +80,8 @@ class ExpenseTracker{
 
     getBills(){ 
         this.removeAllBillElements();
+        this.allBills = [];
+
         fetch('api/bills')
         .then(resp => resp.json())
         .then(data => {
@@ -191,7 +193,7 @@ class ExpenseTracker{
             if(data.success){
                 console.log('Bill deleted...');
                 this.closeModal();
-                this.deleteRow(this.rowToBeDeleted);
+                this.getBills();
             }
             else{
                 console.log('Bill not deleted...')
@@ -208,8 +210,8 @@ class ExpenseTracker{
             total+= this.allBills[index].amount;
         }
         
-        domElementLg.innerText = total;
-        domElementSm.innerText = total;
+        domElementLg.innerText = total.toFixed(2);
+        domElementSm.innerText = total.toFixed(2);
     }
 
     cancelBill(){
@@ -251,11 +253,6 @@ class ExpenseTracker{
 
         this.deleteId = deleteModalInfo.id;
         this.rowToBeDeleted = deleteModalInfo.rowToBeDeleted;
-    }
-
-    deleteRow(row){
-        let index = row.sectionRowIndex;
-        this.DOMAreas.billDisplayArea.deleteRow(index);
     }
 
     formatModalDate(date){
