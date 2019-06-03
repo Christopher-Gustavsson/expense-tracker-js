@@ -68,6 +68,12 @@ class ExpenseTracker{
         this.buttons.cancelDeleteModalButton.addEventListener('click', this.closeModal);
 
         window.addEventListener('click', this.outsideModalClick);
+
+        //close modal when Esc is pressed
+        window.addEventListener('keydown', event => {
+            if(event.keyCode === 27)
+                this.closeModal();
+        });
     }
 
     getBills(){ 
@@ -250,8 +256,8 @@ class ExpenseTracker{
         this.DOMAreas.modalForm.classList.remove('was-validated');
     }
 
-    outsideModalClick(e){
-        if(e.target === this.DOMAreas.modal || e.target === this.DOMAreas.deleteModal){
+    outsideModalClick(event){
+        if(event.target === this.DOMAreas.modal || event.target === this.DOMAreas.deleteModal){
             this.closeModal();
         }
     }
