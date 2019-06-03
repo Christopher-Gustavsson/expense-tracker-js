@@ -67,17 +67,6 @@ th{
 #buttons-container i{
     color: rgb(183, 206, 223);
 }
-/* #display-area tr:hover #delete-button{
-    border: 2px solid #ED4637;
-    transition: background-color .5s;
-    transition-timing-function: ease-in-out;
-}
-
-#display-area tr:hover #edit-button{
-    border: 2px solid #EF6230;
-    transition: background-color 0.5s;
-    transition-timing-function: ease-in-out;
-} */
 
 #edit-button{
     margin-right: .3rem;
@@ -90,5 +79,14 @@ th{
 .far, .fas{
     color: #fff;
 }
+
+.input-group-text{ 
+    width: 39px;
+}
+
+.input-group-text > i {
+    width: 100%;
+}
+
 
 
