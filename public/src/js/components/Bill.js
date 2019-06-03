@@ -13,13 +13,15 @@ class Bill{
 
         this.modal = billRequirements.modal;
         this.openModal = billRequirements.openModal;
+        this.deleteModal = billRequirements.deleteModal;
+        this.openDeleteModal = billRequirements.openDeleteModal;
         this.billDisplayArea = billRequirements.billDisplayArea;
 
         this.domElement = null;
 
         this.renderBill = this.renderBill.bind(this);
-        this.handleDeleteBill = this.handleDeleteBill.bind(this);
         this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleOpenDeleteModal = this.handleOpenDeleteModal.bind(this);
     }
 
     renderBill(){
@@ -68,7 +70,7 @@ class Bill{
         const button = document.createElement("BUTTON");
         button.setAttribute('id', 'delete-button')
         button.setAttribute('class', 'btn')
-        button.addEventListener('click', this.handleDeleteBill);
+        button.addEventListener('click', this.handleOpenDeleteModal);
         const deleteIcon = document.createElement("I");
         deleteIcon.setAttribute('class', 'far fa-trash-alt');
         button.appendChild(deleteIcon);
@@ -97,13 +99,16 @@ class Bill{
         this.openModal(modalInfo);
     }
 
-    handleDeleteBill(){
-        this.deleteBill(this.id);
-        this.deleteRow(this.domElement);
-    }
-
-    deleteRow(row){
-        let index = row.sectionRowIndex;
-        this.billDisplayArea.deleteRow(index);
+    handleOpenDeleteModal(){
+        const deleteModalInfo = {
+            id: this.id,
+            vendor: this.vendor,
+            description: this.description,
+            amount: this.amount,
+            dueDate: this.dueDate,
+            deleteModal: this.deleteModal,
+            rowToBeDeleted: this.domElement
+        }
+        this.openDeleteModal(deleteModalInfo);
     }
 }   

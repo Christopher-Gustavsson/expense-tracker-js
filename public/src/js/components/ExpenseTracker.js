@@ -6,8 +6,12 @@ class ExpenseTracker{
             addButton: elementConfig.buttons.addButton,
             cancelButton: elementConfig.buttons.cancelButton,
             closeModalButton: elementConfig.buttons.closeModalButton,
+            closeDeleteModalButton: elementConfig.buttons.closeDeleteModalButton,
             updateButton: elementConfig.buttons.updateButton,
-            cancelModalButton: elementConfig.buttons.cancelModalButton
+            cancelModalButton: elementConfig.buttons.cancelModalButton,
+            cancelDeleteModalButton: elementConfig.buttons.cancelDeleteModalButton,
+            confirmDeleteButton: elementConfig.buttons.confirmDeleteButton,
+            cancelDeleteButton: elementConfig.buttons.cancelDeleteButton
         };
 
         this.inputFields = {
@@ -19,7 +23,12 @@ class ExpenseTracker{
             modalVendor: elementConfig.inputFields.modalVendor,
             modalDescription: elementConfig.inputFields.modalDescription,
             modalAmount: elementConfig.inputFields.modalAmount,
-            modalDueDate: elementConfig.inputFields.modalDueDate
+            modalDueDate: elementConfig.inputFields.modalDueDate,
+
+            deleteModalVendor: elementConfig.inputFields.deleteModalVendor,
+            deleteModalDescription: elementConfig.inputFields.deleteModalDescription,
+            deleteModalAmount: elementConfig.inputFields.deleteModalAmount,
+            deleteModalDueDate: elementConfig.inputFields.deleteModalDueDate
         };
 
         this.DOMAreas = {
@@ -27,12 +36,16 @@ class ExpenseTracker{
             modalForm: elementConfig.DOMAreas.modalForm,
             billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
             billListTable : elementConfig.DOMAreas.billListTable,
-            modal: elementConfig.DOMAreas.modal
+            modal: elementConfig.DOMAreas.modal,
+            deleteModal: elementConfig.DOMAreas.deleteModal
         };
 
+        this.deleteId = null;
+        this.rowToBeDeleted = null;
         this.updateId = null;
         this.allBills = [];
 
+        /*=================BINDING=================*/
         this.addBill = this.addBill.bind(this);
         this.getBills = this.getBills.bind(this);
         this.updateBill = this.updateBill.bind(this);
@@ -40,15 +53,20 @@ class ExpenseTracker{
         this.cancelBill = this.cancelBill.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.openModal = this.openModal.bind(this);
+        this.openDeleteModal = this.openDeleteModal.bind(this);
         this.outsideModalClick = this.outsideModalClick.bind(this);
     }
 
     addClickHandlers(){
         this.DOMAreas.mainForm.addEventListener('submit', this.addBill);
         this.DOMAreas.modalForm.addEventListener('submit', this.updateBill);
+        this.buttons.confirmDeleteButton.addEventListener('click', this.deleteBill);
         this.buttons.cancelButton.addEventListener('click', this.cancelBill);
         this.buttons.closeModalButton.addEventListener('click', this.closeModal);
+        this.buttons.closeDeleteModalButton.addEventListener('click', this.closeModal);
         this.buttons.cancelModalButton.addEventListener('click', this.closeModal);
+        this.buttons.cancelDeleteModalButton.addEventListener('click', this.closeModal);
+
         window.addEventListener('click', this.outsideModalClick);
     }
 
@@ -71,6 +89,8 @@ class ExpenseTracker{
                         updateBill: this.updateBill,
                         modal: this.DOMAreas.modal,
                         openModal: this.openModal,
+                        deleteModal: this.DOMAreas.deleteModal,
+                        openDeleteModal: this.openDeleteModal,
                         billDisplayArea: this.DOMAreas.billDisplayArea
                     };
     
@@ -144,7 +164,6 @@ class ExpenseTracker{
             if(data.success){
                 this.getBills();
                 this.closeModal();
-                this.clearInputs();
                 console.log('Updated bill in db');
             }
             else{
@@ -154,12 +173,16 @@ class ExpenseTracker{
         return true;
     }
 
-    deleteBill(bill_id){
+    deleteBill(){
+        console.log("delete bill called");
+        const bill_id = this.deleteId;
         fetch('api/bills/' + bill_id, {method: 'DELETE'})
         .then(resp => resp.json())
         .then(data => {
             if(data.success){
                 console.log('Bill deleted...');
+                this.closeModal();
+                this.deleteRow(this.rowToBeDeleted);
             }
             else{
                 console.log('Bill not deleted...')
@@ -196,6 +219,23 @@ class ExpenseTracker{
         this.updateId = modalInfo.id;
     }
 
+    openDeleteModal(deleteModalInfo){
+        deleteModalInfo.deleteModal.style.display = 'block';
+        
+        this.inputFields.deleteModalVendor.value = deleteModalInfo.vendor;
+        this.inputFields.deleteModalDescription.value = deleteModalInfo.description;
+        this.inputFields.deleteModalAmount.value = deleteModalInfo.amount;
+        this.inputFields.deleteModalDueDate.value = this.formatModalDate(deleteModalInfo.dueDate);
+
+        this.deleteId = deleteModalInfo.id;
+        this.rowToBeDeleted = deleteModalInfo.rowToBeDeleted;
+    }
+
+    deleteRow(row){
+        let index = row.sectionRowIndex;
+        this.DOMAreas.billDisplayArea.deleteRow(index);
+    }
+
     formatModalDate(date){
         const year = date.slice(6);
         const month = date.slice(0,2);
@@ -206,11 +246,12 @@ class ExpenseTracker{
 
     closeModal(){
         this.DOMAreas.modal.style.display = 'none';
+        this.DOMAreas.deleteModal.style.display = 'none';
         this.DOMAreas.modalForm.classList.remove('was-validated');
     }
 
     outsideModalClick(e){
-        if(e.target === this.DOMAreas.modal){
+        if(e.target === this.DOMAreas.modal || e.target === this.DOMAreas.deleteModal){
             this.closeModal();
         }
     }

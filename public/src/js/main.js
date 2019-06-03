@@ -6,9 +6,13 @@ function startApp(){
         buttons: {
             addButton: document.getElementById('add-button'),
             cancelButton: document.getElementById('cancel-button'),
-            closeModalButton: document.querySelector('.close-button'),
+            closeModalButton: document.querySelectorAll('.close-button')[0],
+            closeDeleteModalButton: document.querySelectorAll('.close-button')[1],
             updateButton: document.getElementById('update-button'),
             cancelModalButton: document.getElementById('modal-cancel-button'),
+            cancelDeleteModalButton: document.getElementById('cancel-delete-button'),
+            confirmDeleteButton: document.getElementById('confirm-delete-button'),
+            cancelDeleteButton: document.getElementById('cancel-delete-button')
         },
         inputFields: {
             vendor: document.getElementById('vendor'),
@@ -19,13 +23,18 @@ function startApp(){
             modalDescription: document.getElementById('modal-description'),
             modalAmount: document.getElementById('modal-amount'),
             modalDueDate: document.querySelectorAll('input[type="date"]')[1],
+            deleteModalVendor: document.getElementById('delete-modal-vendor'),
+            deleteModalDescription: document.getElementById('delete-modal-description'),
+            deleteModalAmount: document.getElementById('delete-modal-amount'),
+            deleteModalDueDate: document.getElementById('delete-modal-due-date')
         },
         DOMAreas: {
             mainForm: document.querySelectorAll('.needs-validation')[0],
             modalForm: document.querySelectorAll('.needs-validation')[1],
             billDisplayArea: document.getElementById('display-area'),
-            modal: document.getElementById('simple-modal'),
-            billListTable: document.getElementById('bill-list')
+            billListTable: document.getElementById('bill-list'),
+            modal: document.getElementById('update-modal'),
+            deleteModal: document.getElementById('delete-modal')
         }
     });
 

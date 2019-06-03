@@ -7,7 +7,7 @@
     border: 0;
   }
   
-  .modal{
+  .modal, .delete-modal{
     display: none;
     position: fixed;
     z-index: 2;
