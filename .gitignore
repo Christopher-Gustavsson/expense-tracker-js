@@ -1,1 +1,4 @@
 .vscode
+node_modules
+mysql-creds.js
+database-dump-06-02-2019.sql

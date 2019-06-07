@@ -1,0 +1,59 @@
+{
+	"success": true,
+	"bills": [{
+        "id": 1,
+        "vendor": "AT&T",
+        "description": "Phone bill",
+        "amount": 60.00,
+        "dueDate": "05/20/2019"
+    }, 
+    {
+		"id": 2,
+		"vendor": "SoCal Edison",
+		"description": "Electricity bill",
+		"amount": 150.00,
+		"dueDate": "05/25/2019"
+    },
+    {
+        "id": 3,
+        "vendor": "Spectrum",
+        "description": "Internet bill",
+        "amount": 49.99,
+        "dueDate": "05/23/2019"
+    },
+    {
+        "id": 4,
+        "vendor": "Cox Communication",
+        "description": "cable bill",
+        "amount": 120.00,
+        "dueDate": "05/15/2019"
+    },
+    {
+        "id": 5,
+        "vendor": "SoCal Gas",
+        "description": "Gas bill",
+        "amount": 25.00,
+        "dueDate": "05/18/2019"
+    },
+    {
+        "id": 6,
+        "vendor": "HBO",
+        "description": "Need Game of Thrones",
+        "amount": 12.95,
+        "dueDate": "05/01/2019"
+    },
+    {
+        "id": 7,
+        "vendor": "HULU",
+        "description": "Streaming subscription",
+        "amount": 8.95,
+        "dueDate": "05/08/2019"
+    },
+    {
+        "id": 8,
+        "vendor": "Spotify",
+        "description": "Music streaming subscription",
+        "amount": 14.95,
+        "dueDate": "05/14/2019"
+    }]
+}

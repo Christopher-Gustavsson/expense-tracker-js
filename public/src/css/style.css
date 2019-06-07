@@ -1,0 +1,92 @@
+html{
+    height: 100vh;
+}
+
+body{
+    height: 100%;
+    margin: 0;
+    background-image: linear-gradient(rgb(21, 73, 151), #2E92DE);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.page-header{
+    padding: 30px 0px;
+    color: rgb(247, 247, 247);
+}
+
+.page-header h1,
+.page-header h3{
+    background-color: rgb(14, 46, 103);
+    padding: 1rem;
+    border-radius: 10px;
+    line-height: 100%;
+}
+
+.bill-add-form h4{
+    color: rgb(247, 247, 247);
+}
+
+thead tr{
+    color: rgb(247, 247, 247);
+}
+
+#display-area tr:hover,
+#display-area tr:hover i{
+    color: white;
+}
+
+tr{
+    color: rgb(183, 206, 223);
+    border-bottom: 1px solid #7BB8E5;
+}
+
+td{
+    padding: 1rem 0;
+    border-bottom: 1px solid #7BB8E5;
+}
+
+th{
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+#display-area tr .far,
+#display-area tr .fas{
+    font-size: 1.3rem;
+}
+
+#display-area tr:hover{
+    background-color: #6BA6DB;
+}
+
+#buttons-container{
+    position: relative;
+    right: 12px;
+}
+#buttons-container i{
+    color: rgb(183, 206, 223);
+}
+
+#edit-button{
+    margin-right: .3rem;
+}
+
+#basic-addon1{
+    background-color: #adadad;
+}
+
+.far, .fas{
+    color: #fff;
+}
+
+.input-group-text{ 
+    width: 39px;
+}
+
+.input-group-text > i {
+    width: 100%;
+}
+
+
+
