@@ -20,14 +20,18 @@
 
 <div class="col-xs-12 col-lg-12">
     <div class="page-header media-heading col-xs-12 col-lg-12">
-        <!-- only show this element when the user isnt on mobile -->
+        <!-- Desktop -->
         <h1 class="d-none d-md-block col-lg-12">Expense Tracker
             <small class="col-lg-offset-6 float-right">Total Due: <span class="total-expense">0</span></small>
         </h1>
-        <!-- only show this element when the user gets to a mobile version -->
-        <h3 class="d-non d-sm-block d-md-none">Expense Tracker
-            <small class="col-xs-offset-9 float-right">Total Due: <span class="total-expense"> 0</span></small>
-        </h3>
+        <!-- Tablet -->
+        <div>
+            <h3 class="d-md-none">Expense Tracker
+                <small class="col-xs-offset-9 d-none d-sm-block float-right">Total Due: <span class="total-expense"> 0</span></small>
+            </h3>
+        </div>
+        <!-- Mobile -->
+        <small class="col-xs-offset-9 d-block d-sm-none">Total Due: <span class="total-expense"> 0</span></small>
     </div>
 
     <form class="main-form needs-validation" autocomplete="off" novalidate>

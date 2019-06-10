@@ -88,5 +88,19 @@ th{
     width: 100%;
 }
 
+.bill-list-container{
+    overflow-x: auto;
+}
+
+.bill-list{
+    min-width: 600px;
+}
+
+small:nth-child(3){
+    position: relative;
+    left: 14px;
+    font-size: 1.2rem;
+}
+
 
 
