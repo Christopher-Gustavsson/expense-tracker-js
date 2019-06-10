@@ -34,6 +34,7 @@ class ExpenseTracker{
         this.DOMAreas = {
             totalExpenseLg: elementConfig.DOMAreas.totalExpenseLg,
             totalExpenseSm: elementConfig.DOMAreas.totalExpenseSm,
+            totalExpenseXs: elementConfig.DOMAreas.totalExpenseXs,
             mainForm: elementConfig.DOMAreas.mainForm,
             modalForm: elementConfig.DOMAreas.modalForm,
             billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
@@ -204,6 +205,8 @@ class ExpenseTracker{
     getTotalExpenses(){
         const domElementLg = this.DOMAreas.totalExpenseLg;
         const domElementSm = this.DOMAreas.totalExpenseSm;
+        const domElementXs = this.DOMAreas.totalExpenseXs;
+
         let total = 0;
 
         for (let index = 0; index < this.allBills.length; index++){
@@ -212,6 +215,7 @@ class ExpenseTracker{
         
         domElementLg.innerText = total.toFixed(2);
         domElementSm.innerText = total.toFixed(2);
+        domElementXs.innerText = total.toFixed(2);
     }
 
     cancelBill(){

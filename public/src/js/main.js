@@ -31,6 +31,7 @@ function startApp(){
         DOMAreas: {
             totalExpenseLg: document.querySelectorAll('.total-expense')[0],
             totalExpenseSm: document.querySelectorAll('.total-expense')[1],
+            totalExpenseXs: document.querySelectorAll('.total-expense')[2],
             mainForm: document.querySelectorAll('.needs-validation')[0],
             modalForm: document.querySelectorAll('.needs-validation')[1],
             billDisplayArea: document.getElementById('display-area'),

@@ -96,6 +96,11 @@ th{
     min-width: 600px;
 }
 
+small:nth-child(3){
+    position: relative;
+    left: 14px;
+    font-size: 1.2rem;
+}
 
 
 
