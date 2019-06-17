@@ -40,7 +40,8 @@ class ExpenseTracker{
             billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
             billListTable : elementConfig.DOMAreas.billListTable,
             modal: elementConfig.DOMAreas.modal,
-            deleteModal: elementConfig.DOMAreas.deleteModal
+            deleteModal: elementConfig.DOMAreas.deleteModal,
+            emptyNotice: elementConfig.DOMAreas.emptyNotice
         };
 
         this.deleteId = null;
@@ -110,11 +111,13 @@ class ExpenseTracker{
                     newBill.renderBill();
                 });
                 this.getTotalExpenses();
+                this.isListEmpty();
             }
         })
         .catch(err => {
             console.log("Get server data error:", err);
         });
+        
     }
 
     addBill(){
@@ -277,7 +280,16 @@ class ExpenseTracker{
         if(event.target === this.DOMAreas.modal || event.target === this.DOMAreas.deleteModal){
             this.closeModal();
         }
-        
+    }
+
+    isListEmpty(){
+        if (this.allBills.length === 0)
+        {
+            this.DOMAreas.emptyNotice.style.display = 'block';
+        }
+        else{
+            this.DOMAreas.emptyNotice.style.display = 'none';
+        }
     }
 }
 
