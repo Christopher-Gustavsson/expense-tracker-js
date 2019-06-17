@@ -37,7 +37,8 @@ function startApp(){
             billDisplayArea: document.getElementById('display-area'),
             billListTable: document.getElementById('bill-list'),
             modal: document.getElementById('update-modal'),
-            deleteModal: document.getElementById('delete-modal')
+            deleteModal: document.getElementById('delete-modal'),
+            emptyNotice: document.querySelector('.empty-notice')
         }
     });
 
