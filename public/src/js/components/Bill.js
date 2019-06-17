@@ -44,7 +44,12 @@ class Bill{
                 tableData.appendChild(deleteButton);
             }
             else if(value === 'amount'){
+                tableData.setAttribute('class', 'amount');
                 tableData.innerText = `$${billValues[value].toFixed(2)}`;
+            }
+            else if (value === 'dueDate'){
+                tableData.setAttribute('class', 'due-date');
+                tableData.innerText = billValues[value];
             }
             else{
                 tableData.innerText = billValues[value];
