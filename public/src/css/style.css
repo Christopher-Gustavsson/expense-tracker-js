@@ -121,5 +121,12 @@ small:nth-child(3){
     font-size: 1.2rem;
 }
 
+.empty-notice{
+    display: none;
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+}
+
 
 

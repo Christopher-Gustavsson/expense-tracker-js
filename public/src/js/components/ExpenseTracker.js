@@ -40,7 +40,8 @@ class ExpenseTracker{
             billDisplayArea: elementConfig.DOMAreas.billDisplayArea,
             billListTable : elementConfig.DOMAreas.billListTable,
             modal: elementConfig.DOMAreas.modal,
-            deleteModal: elementConfig.DOMAreas.deleteModal
+            deleteModal: elementConfig.DOMAreas.deleteModal,
+            emptyNotice: elementConfig.DOMAreas.emptyNotice
         };
 
         this.deleteId = null;
@@ -70,7 +71,7 @@ class ExpenseTracker{
         this.buttons.cancelModalButton.addEventListener('click', this.closeModal);
         this.buttons.cancelDeleteModalButton.addEventListener('click', this.closeModal);
 
-        window.addEventListener('click', this.outsideModalClick);
+        // window.addEventListener('click', this.outsideModalClick);
 
         //close modal when Esc is pressed
         window.addEventListener('keydown', event => {
@@ -110,11 +111,13 @@ class ExpenseTracker{
                     newBill.renderBill();
                 });
                 this.getTotalExpenses();
+                this.isListEmpty();
             }
         })
         .catch(err => {
             console.log("Get server data error:", err);
         });
+        
     }
 
     addBill(){
@@ -276,6 +279,16 @@ class ExpenseTracker{
     outsideModalClick(event){
         if(event.target === this.DOMAreas.modal || event.target === this.DOMAreas.deleteModal){
             this.closeModal();
+        }
+    }
+
+    isListEmpty(){
+        if (this.allBills.length === 0)
+        {
+            this.DOMAreas.emptyNotice.style.display = 'block';
+        }
+        else{
+            this.DOMAreas.emptyNotice.style.display = 'none';
         }
     }
 }
