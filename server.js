@@ -2,7 +2,9 @@
 const express = require('express');
 const mysql = require('mysql');
 const mysqlCredentials = require('./mysql-creds.js');
+mysqlCredentials.multipleStatements = true;
 const cors = require("cors");
+const cron = require('node-cron');
 const db = mysql.createConnection(mysqlCredentials);
 const server = express();
 server.use(express.json());
@@ -129,6 +131,19 @@ function formatDate(date){
     const formattedDate = `${month}-${day}-${year}`;
     return formattedDate;
 }
+
+// Set automatic task with cron
+const cronNewTable = cron.schedule('0 * * * *', () => {
+    console.log("cronNewTable called");
+    const query = 'CREATE TABLE `bills_new` LIKE `bills`; RENAME TABLE `bills` TO `bills_old`, `bills_new` TO `bills`; INSERT INTO `bills` (`id`, `vendor`, `description`, `amount`, `dueDate`) VALUES (1, "AT&T", "Phone bill", 60, "06-20-2019"), (2, "Spectrum", "Internet bill", 49.99, "06-20-2019"), (3, "HULU", "Tv and movie streaming", 8.49, "06-06-2019"), (4, "SoCal Gas", "Gas bill", 36.87, "06-23-2019"), (5, "HBO", "Tv and movie streaming", 14.99, "06-08-2019"), (6, "Spotify", "Music streaming", 14.99, "06-26-2019"), (7, "SoCalEdison", "Electricity bill", 163.79, "06-27-2019")';
+});
+
+cronNewTable.start();
+const cronDropOldTable = cron.schedule('10 * * * *', () => {
+    const dropOldTableQuery = "DROP TABLE IF EXISTS `bills_old`";
+});
+
+cronDropOldTable.start();
 
 server.listen(3000, () => {
     console.log('Server is running on port 3000');
