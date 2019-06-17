@@ -70,7 +70,7 @@ class ExpenseTracker{
         this.buttons.cancelModalButton.addEventListener('click', this.closeModal);
         this.buttons.cancelDeleteModalButton.addEventListener('click', this.closeModal);
 
-        window.addEventListener('click', this.outsideModalClick);
+        // window.addEventListener('click', this.outsideModalClick);
 
         //close modal when Esc is pressed
         window.addEventListener('keydown', event => {
@@ -277,6 +277,7 @@ class ExpenseTracker{
         if(event.target === this.DOMAreas.modal || event.target === this.DOMAreas.deleteModal){
             this.closeModal();
         }
+        
     }
 }
 
