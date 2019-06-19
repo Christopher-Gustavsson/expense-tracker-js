@@ -136,11 +136,23 @@ function formatDate(date){
 const cronNewTable = cron.schedule('0 * * * *', () => {
     console.log("cronNewTable called");
     const query = 'CREATE TABLE `bills_new` LIKE `bills`; RENAME TABLE `bills` TO `bills_old`, `bills_new` TO `bills`; INSERT INTO `bills` (`id`, `vendor`, `description`, `amount`, `dueDate`) VALUES (1, "AT&T", "Phone bill", 60, "06-20-2019"), (2, "Spectrum", "Internet bill", 49.99, "06-20-2019"), (3, "HULU", "Tv and movie streaming", 8.49, "06-06-2019"), (4, "SoCal Gas", "Gas bill", 36.87, "06-23-2019"), (5, "HBO", "Tv and movie streaming", 14.99, "06-08-2019"), (6, "Spotify", "Music streaming", 14.99, "06-26-2019"), (7, "SoCalEdison", "Electricity bill", 163.79, "06-27-2019")';
+    db.query(query, (error) => {
+        if(error){
+            console.error('Cron create table error', error);
+        }
+    });
 });
 
 cronNewTable.start();
 const cronDropOldTable = cron.schedule('10 * * * *', () => {
+    console.log("cronDropTable called");
     const dropOldTableQuery = "DROP TABLE IF EXISTS `bills_old`";
+    db.query(dropOldTableQuery, error => {
+        if(error){
+            console.error('Cron drop table error', error);
+        }
+    });
+    
 });
 
 cronDropOldTable.start();
