@@ -122,6 +122,7 @@ class ExpenseTracker{
 
     formatDueDateInput(dueDateInput){
         let dueDate = dueDateInput;
+        console.log(dueDate);
 
         if (dueDate.length !== 12){
             return dueDate;
