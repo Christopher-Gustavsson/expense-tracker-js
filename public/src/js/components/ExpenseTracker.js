@@ -120,12 +120,66 @@ class ExpenseTracker{
         
     }
 
+    formatDueDateInput(dueDate){
+        dueDate = this.inputFields.dueDate.value;
+
+        if (dueDate.length !== 12){
+            return dueDate;
+        }
+
+        let day = dueDate.slice(4,6);
+        let year = dueDate.slice(8,13);
+        let month = dueDate.slice(0, 3);
+
+        switch (month){
+            case 'Jan':
+                month = '01';
+                break;
+            case 'Feb':
+                month = '02';
+                break;
+            case 'Mar':
+                month = '03';
+                break;
+            case 'Apr': 
+                month = '04';
+                break;
+            case 'May':
+                month = '05';
+                break;
+            case 'Jun':
+                month = '06';
+                break;
+            case 'Jul':
+                month = '07';
+                break;
+            case 'Aug':
+                month = '08';
+                break;
+            case 'Sep':
+                month = '09';
+                break;
+            case 'Oct':
+                month = '10';
+                break;
+            case 'Nov':
+                month = '11';
+                break;
+            case 'Dec':
+                month = '12';
+                break;
+        }
+
+        dueDate = `${month}/${day}/${year}`;
+        return dueDate;
+    }
+
     addBill(){
         const queryParams = {
             vendor: this.inputFields.vendor.value,
             description: this.inputFields.description.value,
             amount: parseFloat(this.inputFields.amount.value),
-            dueDate: this.inputFields.DueDate.value
+            dueDate: this.formatDueDateInput(this.inputFields.DueDate.value)
         };
 
         const {vendor, description, amount, dueDate} = queryParams;
