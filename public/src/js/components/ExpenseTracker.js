@@ -120,8 +120,8 @@ class ExpenseTracker{
         
     }
 
-    formatDueDateInput(dueDate){
-        dueDate = this.inputFields.dueDate.value;
+    formatDueDateInput(dueDateInput){
+        let dueDate = dueDateInput;
 
         if (dueDate.length !== 12){
             return dueDate;
